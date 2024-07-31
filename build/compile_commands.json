@@ -1,0 +1,67 @@
+[
+{
+  "directory": "/home/river/work/Raft/Raft_LAB3/build/proto",
+  "command": "/usr/bin/g++ -DCARES_STATICLIB -D__CLANG_SUPPORT_DYN_ANNOTATION__ -I/home/river/work/Raft/Raft_LAB3/include -I/home/river/work/Raft/Raft_LAB3/build/proto -g -g -o CMakeFiles/raft_proto.dir/raft.pb.o -c /home/river/work/Raft/Raft_LAB3/build/proto/raft.pb.cc",
+  "file": "/home/river/work/Raft/Raft_LAB3/build/proto/raft.pb.cc"
+},
+{
+  "directory": "/home/river/work/Raft/Raft_LAB3/build/proto",
+  "command": "/usr/bin/g++ -DCARES_STATICLIB -D__CLANG_SUPPORT_DYN_ANNOTATION__ -I/home/river/work/Raft/Raft_LAB3/include -I/home/river/work/Raft/Raft_LAB3/build/proto -g -g -o CMakeFiles/raft_proto.dir/kvserver.pb.o -c /home/river/work/Raft/Raft_LAB3/build/proto/kvserver.pb.cc",
+  "file": "/home/river/work/Raft/Raft_LAB3/build/proto/kvserver.pb.cc"
+},
+{
+  "directory": "/home/river/work/Raft/Raft_LAB3/build/proto",
+  "command": "/usr/bin/g++ -DCARES_STATICLIB -D__CLANG_SUPPORT_DYN_ANNOTATION__ -I/home/river/work/Raft/Raft_LAB3/include -I/home/river/work/Raft/Raft_LAB3/build/proto -g -g -o CMakeFiles/raft_proto.dir/raft.grpc.pb.o -c /home/river/work/Raft/Raft_LAB3/build/proto/raft.grpc.pb.cc",
+  "file": "/home/river/work/Raft/Raft_LAB3/build/proto/raft.grpc.pb.cc"
+},
+{
+  "directory": "/home/river/work/Raft/Raft_LAB3/build/proto",
+  "command": "/usr/bin/g++ -DCARES_STATICLIB -D__CLANG_SUPPORT_DYN_ANNOTATION__ -I/home/river/work/Raft/Raft_LAB3/include -I/home/river/work/Raft/Raft_LAB3/build/proto -g -g -o CMakeFiles/raft_proto.dir/kvserver.grpc.pb.o -c /home/river/work/Raft/Raft_LAB3/build/proto/kvserver.grpc.pb.cc",
+  "file": "/home/river/work/Raft/Raft_LAB3/build/proto/kvserver.grpc.pb.cc"
+},
+{
+  "directory": "/home/river/work/Raft/Raft_LAB3/build/src",
+  "command": "/usr/bin/g++ -DCARES_STATICLIB -D__CLANG_SUPPORT_DYN_ANNOTATION__ -I/home/river/work/Raft/Raft_LAB3/include -I/home/river/work/Raft/Raft_LAB3/build/proto -g -g -o CMakeFiles/raft.dir/kvRaft.cpp.o -c /home/river/work/Raft/Raft_LAB3/src/kvRaft.cpp",
+  "file": "/home/river/work/Raft/Raft_LAB3/src/kvRaft.cpp"
+},
+{
+  "directory": "/home/river/work/Raft/Raft_LAB3/build/src",
+  "command": "/usr/bin/g++ -DCARES_STATICLIB -D__CLANG_SUPPORT_DYN_ANNOTATION__ -I/home/river/work/Raft/Raft_LAB3/include -I/home/river/work/Raft/Raft_LAB3/build/proto -g -g -o CMakeFiles/raft.dir/raft.grpc.pb.cc.o -c /home/river/work/Raft/Raft_LAB3/src/raft.grpc.pb.cc",
+  "file": "/home/river/work/Raft/Raft_LAB3/src/raft.grpc.pb.cc"
+},
+{
+  "directory": "/home/river/work/Raft/Raft_LAB3/build/src",
+  "command": "/usr/bin/g++ -DCARES_STATICLIB -D__CLANG_SUPPORT_DYN_ANNOTATION__ -I/home/river/work/Raft/Raft_LAB3/include -I/home/river/work/Raft/Raft_LAB3/build/proto -g -g -o CMakeFiles/raft.dir/raft.pb.cc.o -c /home/river/work/Raft/Raft_LAB3/src/raft.pb.cc",
+  "file": "/home/river/work/Raft/Raft_LAB3/src/raft.pb.cc"
+},
+{
+  "directory": "/home/river/work/Raft/Raft_LAB3/build/src",
+  "command": "/usr/bin/g++ -DCARES_STATICLIB -D__CLANG_SUPPORT_DYN_ANNOTATION__ -I/home/river/work/Raft/Raft_LAB3/include -I/home/river/work/Raft/Raft_LAB3/build/proto -g -g -o CMakeFiles/raft.dir/kvserver.grpc.pb.cc.o -c /home/river/work/Raft/Raft_LAB3/src/kvserver.grpc.pb.cc",
+  "file": "/home/river/work/Raft/Raft_LAB3/src/kvserver.grpc.pb.cc"
+},
+{
+  "directory": "/home/river/work/Raft/Raft_LAB3/build/src",
+  "command": "/usr/bin/g++ -DCARES_STATICLIB -D__CLANG_SUPPORT_DYN_ANNOTATION__ -I/home/river/work/Raft/Raft_LAB3/include -I/home/river/work/Raft/Raft_LAB3/build/proto -g -g -o CMakeFiles/raft.dir/kvserver.pb.cc.o -c /home/river/work/Raft/Raft_LAB3/src/kvserver.pb.cc",
+  "file": "/home/river/work/Raft/Raft_LAB3/src/kvserver.pb.cc"
+},
+{
+  "directory": "/home/river/work/Raft/Raft_LAB3/build/src",
+  "command": "/usr/bin/g++ -DCARES_STATICLIB -D__CLANG_SUPPORT_DYN_ANNOTATION__ -I/home/river/work/Raft/Raft_LAB3/include -I/home/river/work/Raft/Raft_LAB3/build/proto -g -g -o CMakeFiles/raft.dir/RaftRPC.cpp.o -c /home/river/work/Raft/Raft_LAB3/src/RaftRPC.cpp",
+  "file": "/home/river/work/Raft/Raft_LAB3/src/RaftRPC.cpp"
+},
+{
+  "directory": "/home/river/work/Raft/Raft_LAB3/build/src",
+  "command": "/usr/bin/g++ -DCARES_STATICLIB -D__CLANG_SUPPORT_DYN_ANNOTATION__ -I/home/river/work/Raft/Raft_LAB3/include -I/home/river/work/Raft/Raft_LAB3/build/proto -g -g -o CMakeFiles/raft.dir/RaftServer.cpp.o -c /home/river/work/Raft/Raft_LAB3/src/RaftServer.cpp",
+  "file": "/home/river/work/Raft/Raft_LAB3/src/RaftServer.cpp"
+},
+{
+  "directory": "/home/river/work/Raft/Raft_LAB3/build/src",
+  "command": "/usr/bin/g++ -DCARES_STATICLIB -D__CLANG_SUPPORT_DYN_ANNOTATION__ -I/home/river/work/Raft/Raft_LAB3/include -I/home/river/work/Raft/Raft_LAB3/build/proto -g -g -o CMakeFiles/raft.dir/ThreadPool.cpp.o -c /home/river/work/Raft/Raft_LAB3/src/ThreadPool.cpp",
+  "file": "/home/river/work/Raft/Raft_LAB3/src/ThreadPool.cpp"
+},
+{
+  "directory": "/home/river/work/Raft/Raft_LAB3/build/src",
+  "command": "/usr/bin/g++ -DCARES_STATICLIB -D__CLANG_SUPPORT_DYN_ANNOTATION__ -I/home/river/work/Raft/Raft_LAB3/include -I/home/river/work/Raft/Raft_LAB3/build/proto -g -g -o CMakeFiles/cli.dir/client.cpp.o -c /home/river/work/Raft/Raft_LAB3/src/client.cpp",
+  "file": "/home/river/work/Raft/Raft_LAB3/src/client.cpp"
+}
+]

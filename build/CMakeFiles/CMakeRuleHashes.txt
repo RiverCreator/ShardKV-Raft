@@ -1,0 +1,5 @@
+# Hashes of file build rules.
+dc7ccfede63afa102d466d792764c0da proto/kvserver.grpc.pb.h
+fcb65e0be8e2877a75e6e45434baabb1 proto/kvserver.pb.h
+132f506dc3d2d11105e236166447c218 proto/raft.grpc.pb.h
+6817eae5511be2ac60b7c1c0f840d723 proto/raft.pb.h

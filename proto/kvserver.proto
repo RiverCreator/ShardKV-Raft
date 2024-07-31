@@ -1,0 +1,40 @@
+syntax = "proto3";
+package kvrf;
+
+message PutRequest{
+    string key = 1;
+    string value = 2;
+    string op = 3;
+    int32 clientId = 4;
+    int32 requestId = 5;
+}
+
+message PutResponse{
+    bool OK = 1;
+}
+
+message GetRequest{
+    string key = 1;
+    int32 clientId = 2;
+    int32 requestId = 3;
+}
+
+message GetResponse{
+    string value = 1;
+    bool isExist = 3;
+}
+
+message Request{
+    bytes type = 1;
+    bytes request_msg = 2;
+}
+
+message Response{
+    bytes type = 1;
+    bool isWrongLeader = 2;
+    bytes response_msg = 3;
+}
+service KvRaftServiceRpc{
+    rpc Put(PutRequest) returns(PutResponse);
+    rpc Get(GetRequest) returns(GetResponse);
+}
