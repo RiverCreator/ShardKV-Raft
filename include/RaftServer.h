@@ -139,7 +139,7 @@ public:
     //回复Append
     rf::AppendEntriesResponse ReplyAppend(const rf::AppendEntriesRequest* request);
     //回复InstallSnap
-    rf::InstallSnapShotResponse ReplyInstallSnap(const rf::InstallSnapShotRequest);
+    rf::InstallSnapShotResponse ReplyInstallSnap(const rf::InstallSnapShotRequest*);
     //发起AppendRPC的线程
     void SendAppendEntries(int clientPeerId);
     //发起installsnapshot的线程

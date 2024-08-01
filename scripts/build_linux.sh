@@ -4,4 +4,4 @@ cmake -S . -B build
 cmake --build build 
 cmake --install build
 # mv build/proto/*.h include
-# mv build/proto/&.cc src
+# mv build/proto/*.cc src

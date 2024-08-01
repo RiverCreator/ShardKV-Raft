@@ -1,2 +1,2 @@
-/usr/bin/ar qc libraft_proto.a CMakeFiles/raft_proto.dir/raft.pb.o CMakeFiles/raft_proto.dir/kvserver.pb.o CMakeFiles/raft_proto.dir/raft.grpc.pb.o CMakeFiles/raft_proto.dir/kvserver.grpc.pb.o
+/usr/bin/ar qc libraft_proto.a CMakeFiles/raft_proto.dir/raft.pb.o CMakeFiles/raft_proto.dir/kvserver.pb.o CMakeFiles/raft_proto.dir/shardkv.pb.o CMakeFiles/raft_proto.dir/raft.grpc.pb.o CMakeFiles/raft_proto.dir/kvserver.grpc.pb.o CMakeFiles/raft_proto.dir/shardkv.grpc.pb.o
 /usr/bin/ranlib libraft_proto.a

@@ -28,6 +28,8 @@
 
 namespace kvrf {
 
+// kvshard
+//
 class KvRaftServiceRpc final {
  public:
   static constexpr char const* service_full_name() {

@@ -9,6 +9,7 @@ find_package(c-ares CONFIG)
 set(PROTO_FILES
     raft.proto
     kvserver.proto
+    shardkv.proto
 )
 
 #

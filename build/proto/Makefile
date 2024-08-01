@@ -190,6 +190,36 @@ raft.pb.s:
 	cd /home/river/work/Raft/Raft_LAB3/build && $(MAKE) $(MAKESILENT) -f proto/CMakeFiles/raft_proto.dir/build.make proto/CMakeFiles/raft_proto.dir/raft.pb.s
 .PHONY : raft.pb.s
 
+# target to build an object file
+shardkv.grpc.pb.o:
+	cd /home/river/work/Raft/Raft_LAB3/build && $(MAKE) $(MAKESILENT) -f proto/CMakeFiles/raft_proto.dir/build.make proto/CMakeFiles/raft_proto.dir/shardkv.grpc.pb.o
+.PHONY : shardkv.grpc.pb.o
+
+# target to preprocess a source file
+shardkv.grpc.pb.i:
+	cd /home/river/work/Raft/Raft_LAB3/build && $(MAKE) $(MAKESILENT) -f proto/CMakeFiles/raft_proto.dir/build.make proto/CMakeFiles/raft_proto.dir/shardkv.grpc.pb.i
+.PHONY : shardkv.grpc.pb.i
+
+# target to generate assembly for a file
+shardkv.grpc.pb.s:
+	cd /home/river/work/Raft/Raft_LAB3/build && $(MAKE) $(MAKESILENT) -f proto/CMakeFiles/raft_proto.dir/build.make proto/CMakeFiles/raft_proto.dir/shardkv.grpc.pb.s
+.PHONY : shardkv.grpc.pb.s
+
+# target to build an object file
+shardkv.pb.o:
+	cd /home/river/work/Raft/Raft_LAB3/build && $(MAKE) $(MAKESILENT) -f proto/CMakeFiles/raft_proto.dir/build.make proto/CMakeFiles/raft_proto.dir/shardkv.pb.o
+.PHONY : shardkv.pb.o
+
+# target to preprocess a source file
+shardkv.pb.i:
+	cd /home/river/work/Raft/Raft_LAB3/build && $(MAKE) $(MAKESILENT) -f proto/CMakeFiles/raft_proto.dir/build.make proto/CMakeFiles/raft_proto.dir/shardkv.pb.i
+.PHONY : shardkv.pb.i
+
+# target to generate assembly for a file
+shardkv.pb.s:
+	cd /home/river/work/Raft/Raft_LAB3/build && $(MAKE) $(MAKESILENT) -f proto/CMakeFiles/raft_proto.dir/build.make proto/CMakeFiles/raft_proto.dir/shardkv.pb.s
+.PHONY : shardkv.pb.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -211,6 +241,12 @@ help:
 	@echo "... raft.pb.o"
 	@echo "... raft.pb.i"
 	@echo "... raft.pb.s"
+	@echo "... shardkv.grpc.pb.o"
+	@echo "... shardkv.grpc.pb.i"
+	@echo "... shardkv.grpc.pb.s"
+	@echo "... shardkv.pb.o"
+	@echo "... shardkv.pb.i"
+	@echo "... shardkv.pb.s"
 .PHONY : help
 
 

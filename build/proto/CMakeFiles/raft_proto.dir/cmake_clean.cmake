@@ -7,6 +7,10 @@ file(REMOVE_RECURSE
   "CMakeFiles/raft_proto.dir/raft.grpc.pb.o.d"
   "CMakeFiles/raft_proto.dir/raft.pb.o"
   "CMakeFiles/raft_proto.dir/raft.pb.o.d"
+  "CMakeFiles/raft_proto.dir/shardkv.grpc.pb.o"
+  "CMakeFiles/raft_proto.dir/shardkv.grpc.pb.o.d"
+  "CMakeFiles/raft_proto.dir/shardkv.pb.o"
+  "CMakeFiles/raft_proto.dir/shardkv.pb.o.d"
   "kvserver.grpc.pb.cc"
   "kvserver.grpc.pb.h"
   "kvserver.pb.cc"
@@ -17,6 +21,10 @@ file(REMOVE_RECURSE
   "raft.grpc.pb.h"
   "raft.pb.cc"
   "raft.pb.h"
+  "shardkv.grpc.pb.cc"
+  "shardkv.grpc.pb.h"
+  "shardkv.pb.cc"
+  "shardkv.pb.h"
 )
 
 # Per-language clean rules from dependency scanning.

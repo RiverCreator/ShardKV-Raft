@@ -37,6 +37,7 @@ void Raft::Init(std::vector<PeersInfo> &peers, int id)
     this->installSnapShotTOkvServer(true);
     rpc_server.SetVoteCallBack(std::bind(&Raft::ReplyVote,this,std::placeholders::_1));
     rpc_server.SetAppendCallBack(std::bind(&Raft::ReplyAppend,this,std::placeholders::_1));
+    rpc_server.SetInstallSnapShotCallBack(std::bind(&Raft::ReplyInstallSnap,this,std::placeholders::_1));
     for(int i=0;i<peers.size();i++){
         std::string ip_port=peers[i].ip+":"+std::to_string(peers[i].port);
         auto channel = grpc::CreateChannel(ip_port, grpc::InsecureChannelCredentials());
@@ -220,7 +221,7 @@ void Raft::Serialize()
         str += log.m_cmd + "," + std::to_string(log.m_term) + ".";
     }
     std::string filename = "persister-" + std::to_string(peer_id);
-    int fd = open(filename.c_str(), O_WRONLY | O_CREAT, 0664);
+    int fd = open(filename.c_str(), O_WRONLY | O_CREAT |O_TRUNC, 0664);
     if(fd == -1){
         perror("open");
         exit(-1);
@@ -259,7 +260,7 @@ bool Raft::ExceedLogSize(int size)
     for(int i=0;i<persister.logs.size();i++){
         sum += persister.logs[i].m_cmd.size();
     }
-    printf("[%d] [%d] current sum: %d\n",this->peer_id, this->m_state, sum);
+    //printf("[%d] [%d] current sum: %d\n",this->peer_id, this->m_state, sum);
     if(sum>=size){
         ret=true;
         printf("[%d] in Exceed the log size is %d B\n",peer_id,sum);
@@ -753,38 +754,39 @@ rf::AppendEntriesResponse Raft::ReplyAppend(const rf::AppendEntriesRequest *requ
     // return response;
 }
 //TODO 【问】如果当前从机快照有问题则是全部删除
-rf::InstallSnapShotResponse Raft::ReplyInstallSnap(const rf::InstallSnapShotRequest request)
+rf::InstallSnapShotResponse Raft::ReplyInstallSnap(const rf::InstallSnapShotRequest* request)
 {
     rf::InstallSnapShotResponse response;
+    printf("recv install snapshot [%d],[%d]\n",request->lastincludeindex(),request->lastincludeterm());
     {
         std::lock_guard<std::mutex> lock(this->mtx);
         response.set_term(this->m_curTerm);
-        if(request.term() < this->m_curTerm){
+        if(request->term() < this->m_curTerm){
             return response;
         }
         else{
-            if(request.term() > this->m_curTerm){
+            if(request->term() > this->m_curTerm){
                 this->m_voteFor = -1;
                 SaveRaftState();
             }
-            this->m_curTerm = request.term();
+            this->m_curTerm = request->term();
             this->m_state = FOLLOWER;
         }
         gettimeofday(&this->m_lastWakeTime, NULL);
         //如果发送过来的快照最后一个index是小于等于当前从机快照的index的
-        if(request.lastincludeindex() <= this->m_lastIncludedIndex){
+        if(request->lastincludeindex() <= this->m_lastIncludedIndex){
             return response;
         }
         else{
             //如果快照中的日志内容是当前从机的子集 
-            if(request.lastincludeindex() < this->lastindex()){
+            if(request->lastincludeindex() < this->lastindex()){
                 //如果当前从机中对应主机快照的最后一条日志的term与主机的term不一致 则直接清楚当前日志
-                if(this->m_logs[this->CompressLogidx(this->lastindex())].m_term != request.lastincludeterm()){
+                if(this->m_logs[this->CompressLogidx(this->lastindex())].m_term != request->lastincludeterm()){
                     this->m_logs.clear();
                 }
                 else{
                     //否则，将快照之前的日志从m_logs中删除
-                    std::vector<LogEntry> tmpLog(this->m_logs.begin() + this->CompressLogidx(request.lastincludeindex()) + 1, m_logs.end());
+                    std::vector<LogEntry> tmpLog(this->m_logs.begin() + this->CompressLogidx(request->lastincludeindex()) + 1, m_logs.end());
                     this->m_logs = tmpLog;
                 }
             }
@@ -792,12 +794,12 @@ rf::InstallSnapShotResponse Raft::ReplyInstallSnap(const rf::InstallSnapShotRequ
                 this->m_logs.clear();
             }
         }
-        this->m_lastIncludedIndex = request.lastincludeindex();
-        this->m_lastIncludeTerm = request.lastincludeterm();
+        this->m_lastIncludedIndex = request->lastincludeindex();
+        this->m_lastIncludeTerm = request->lastincludeterm();
     }
     {
         std::lock_guard<std::mutex> lock(this->persist_mtx);
-        this->persister.snapshot.data = request.data(0);
+        this->persister.snapshot.data = request->data(0);
         
         this->SaveRaftState();
         this->SaveSnapShot();

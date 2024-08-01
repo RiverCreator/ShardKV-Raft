@@ -11,6 +11,11 @@
 },
 {
   "directory": "/home/river/work/Raft/Raft_LAB3/build/proto",
+  "command": "/usr/bin/g++ -DCARES_STATICLIB -D__CLANG_SUPPORT_DYN_ANNOTATION__ -I/home/river/work/Raft/Raft_LAB3/include -I/home/river/work/Raft/Raft_LAB3/build/proto -g -g -o CMakeFiles/raft_proto.dir/shardkv.pb.o -c /home/river/work/Raft/Raft_LAB3/build/proto/shardkv.pb.cc",
+  "file": "/home/river/work/Raft/Raft_LAB3/build/proto/shardkv.pb.cc"
+},
+{
+  "directory": "/home/river/work/Raft/Raft_LAB3/build/proto",
   "command": "/usr/bin/g++ -DCARES_STATICLIB -D__CLANG_SUPPORT_DYN_ANNOTATION__ -I/home/river/work/Raft/Raft_LAB3/include -I/home/river/work/Raft/Raft_LAB3/build/proto -g -g -o CMakeFiles/raft_proto.dir/raft.grpc.pb.o -c /home/river/work/Raft/Raft_LAB3/build/proto/raft.grpc.pb.cc",
   "file": "/home/river/work/Raft/Raft_LAB3/build/proto/raft.grpc.pb.cc"
 },
@@ -18,6 +23,11 @@
   "directory": "/home/river/work/Raft/Raft_LAB3/build/proto",
   "command": "/usr/bin/g++ -DCARES_STATICLIB -D__CLANG_SUPPORT_DYN_ANNOTATION__ -I/home/river/work/Raft/Raft_LAB3/include -I/home/river/work/Raft/Raft_LAB3/build/proto -g -g -o CMakeFiles/raft_proto.dir/kvserver.grpc.pb.o -c /home/river/work/Raft/Raft_LAB3/build/proto/kvserver.grpc.pb.cc",
   "file": "/home/river/work/Raft/Raft_LAB3/build/proto/kvserver.grpc.pb.cc"
+},
+{
+  "directory": "/home/river/work/Raft/Raft_LAB3/build/proto",
+  "command": "/usr/bin/g++ -DCARES_STATICLIB -D__CLANG_SUPPORT_DYN_ANNOTATION__ -I/home/river/work/Raft/Raft_LAB3/include -I/home/river/work/Raft/Raft_LAB3/build/proto -g -g -o CMakeFiles/raft_proto.dir/shardkv.grpc.pb.o -c /home/river/work/Raft/Raft_LAB3/build/proto/shardkv.grpc.pb.cc",
+  "file": "/home/river/work/Raft/Raft_LAB3/build/proto/shardkv.grpc.pb.cc"
 },
 {
   "directory": "/home/river/work/Raft/Raft_LAB3/build/src",

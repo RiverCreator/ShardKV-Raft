@@ -85,9 +85,17 @@ proto/kvserver.pb.h: /usr/local/bin/protoc-3.14.0.0
 proto/kvserver.pb.cc: proto/kvserver.pb.h
 	@$(CMAKE_COMMAND) -E touch_nocreate proto/kvserver.pb.cc
 
+proto/shardkv.pb.h: ../proto/shardkv.proto
+proto/shardkv.pb.h: /usr/local/bin/protoc-3.14.0.0
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/river/work/Raft/Raft_LAB3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Running cpp protocol buffer compiler on shardkv.proto"
+	cd /home/river/work/Raft/Raft_LAB3/build/proto && /usr/local/bin/protoc-3.14.0.0 --cpp_out /home/river/work/Raft/Raft_LAB3/build/proto -I /home/river/work/Raft/Raft_LAB3/proto /home/river/work/Raft/Raft_LAB3/proto/shardkv.proto
+
+proto/shardkv.pb.cc: proto/shardkv.pb.h
+	@$(CMAKE_COMMAND) -E touch_nocreate proto/shardkv.pb.cc
+
 proto/raft.grpc.pb.h: ../proto/raft.proto
 proto/raft.grpc.pb.h: /usr/local/bin/protoc-3.14.0.0
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/river/work/Raft/Raft_LAB3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Running grpc protocol buffer compiler on raft.proto"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/river/work/Raft/Raft_LAB3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Running grpc protocol buffer compiler on raft.proto"
 	cd /home/river/work/Raft/Raft_LAB3/build/proto && /usr/local/bin/protoc-3.14.0.0 --grpc_out /home/river/work/Raft/Raft_LAB3/build/proto --plugin=protoc-gen-grpc=/usr/local/bin/grpc_cpp_plugin -I /home/river/work/Raft/Raft_LAB3/proto /home/river/work/Raft/Raft_LAB3/proto/raft.proto
 
 proto/raft.grpc.pb.cc: proto/raft.grpc.pb.h
@@ -95,16 +103,24 @@ proto/raft.grpc.pb.cc: proto/raft.grpc.pb.h
 
 proto/kvserver.grpc.pb.h: ../proto/kvserver.proto
 proto/kvserver.grpc.pb.h: /usr/local/bin/protoc-3.14.0.0
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/river/work/Raft/Raft_LAB3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Running grpc protocol buffer compiler on kvserver.proto"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/river/work/Raft/Raft_LAB3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Running grpc protocol buffer compiler on kvserver.proto"
 	cd /home/river/work/Raft/Raft_LAB3/build/proto && /usr/local/bin/protoc-3.14.0.0 --grpc_out /home/river/work/Raft/Raft_LAB3/build/proto --plugin=protoc-gen-grpc=/usr/local/bin/grpc_cpp_plugin -I /home/river/work/Raft/Raft_LAB3/proto /home/river/work/Raft/Raft_LAB3/proto/kvserver.proto
 
 proto/kvserver.grpc.pb.cc: proto/kvserver.grpc.pb.h
 	@$(CMAKE_COMMAND) -E touch_nocreate proto/kvserver.grpc.pb.cc
 
+proto/shardkv.grpc.pb.h: ../proto/shardkv.proto
+proto/shardkv.grpc.pb.h: /usr/local/bin/protoc-3.14.0.0
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/river/work/Raft/Raft_LAB3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Running grpc protocol buffer compiler on shardkv.proto"
+	cd /home/river/work/Raft/Raft_LAB3/build/proto && /usr/local/bin/protoc-3.14.0.0 --grpc_out /home/river/work/Raft/Raft_LAB3/build/proto --plugin=protoc-gen-grpc=/usr/local/bin/grpc_cpp_plugin -I /home/river/work/Raft/Raft_LAB3/proto /home/river/work/Raft/Raft_LAB3/proto/shardkv.proto
+
+proto/shardkv.grpc.pb.cc: proto/shardkv.grpc.pb.h
+	@$(CMAKE_COMMAND) -E touch_nocreate proto/shardkv.grpc.pb.cc
+
 proto/CMakeFiles/raft_proto.dir/raft.pb.o: proto/CMakeFiles/raft_proto.dir/flags.make
 proto/CMakeFiles/raft_proto.dir/raft.pb.o: proto/raft.pb.cc
 proto/CMakeFiles/raft_proto.dir/raft.pb.o: proto/CMakeFiles/raft_proto.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/river/work/Raft/Raft_LAB3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object proto/CMakeFiles/raft_proto.dir/raft.pb.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/river/work/Raft/Raft_LAB3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object proto/CMakeFiles/raft_proto.dir/raft.pb.o"
 	cd /home/river/work/Raft/Raft_LAB3/build/proto && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT proto/CMakeFiles/raft_proto.dir/raft.pb.o -MF CMakeFiles/raft_proto.dir/raft.pb.o.d -o CMakeFiles/raft_proto.dir/raft.pb.o -c /home/river/work/Raft/Raft_LAB3/build/proto/raft.pb.cc
 
 proto/CMakeFiles/raft_proto.dir/raft.pb.i: cmake_force
@@ -118,7 +134,7 @@ proto/CMakeFiles/raft_proto.dir/raft.pb.s: cmake_force
 proto/CMakeFiles/raft_proto.dir/kvserver.pb.o: proto/CMakeFiles/raft_proto.dir/flags.make
 proto/CMakeFiles/raft_proto.dir/kvserver.pb.o: proto/kvserver.pb.cc
 proto/CMakeFiles/raft_proto.dir/kvserver.pb.o: proto/CMakeFiles/raft_proto.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/river/work/Raft/Raft_LAB3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object proto/CMakeFiles/raft_proto.dir/kvserver.pb.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/river/work/Raft/Raft_LAB3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object proto/CMakeFiles/raft_proto.dir/kvserver.pb.o"
 	cd /home/river/work/Raft/Raft_LAB3/build/proto && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT proto/CMakeFiles/raft_proto.dir/kvserver.pb.o -MF CMakeFiles/raft_proto.dir/kvserver.pb.o.d -o CMakeFiles/raft_proto.dir/kvserver.pb.o -c /home/river/work/Raft/Raft_LAB3/build/proto/kvserver.pb.cc
 
 proto/CMakeFiles/raft_proto.dir/kvserver.pb.i: cmake_force
@@ -129,10 +145,24 @@ proto/CMakeFiles/raft_proto.dir/kvserver.pb.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/raft_proto.dir/kvserver.pb.s"
 	cd /home/river/work/Raft/Raft_LAB3/build/proto && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/river/work/Raft/Raft_LAB3/build/proto/kvserver.pb.cc -o CMakeFiles/raft_proto.dir/kvserver.pb.s
 
+proto/CMakeFiles/raft_proto.dir/shardkv.pb.o: proto/CMakeFiles/raft_proto.dir/flags.make
+proto/CMakeFiles/raft_proto.dir/shardkv.pb.o: proto/shardkv.pb.cc
+proto/CMakeFiles/raft_proto.dir/shardkv.pb.o: proto/CMakeFiles/raft_proto.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/river/work/Raft/Raft_LAB3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object proto/CMakeFiles/raft_proto.dir/shardkv.pb.o"
+	cd /home/river/work/Raft/Raft_LAB3/build/proto && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT proto/CMakeFiles/raft_proto.dir/shardkv.pb.o -MF CMakeFiles/raft_proto.dir/shardkv.pb.o.d -o CMakeFiles/raft_proto.dir/shardkv.pb.o -c /home/river/work/Raft/Raft_LAB3/build/proto/shardkv.pb.cc
+
+proto/CMakeFiles/raft_proto.dir/shardkv.pb.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/raft_proto.dir/shardkv.pb.i"
+	cd /home/river/work/Raft/Raft_LAB3/build/proto && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/river/work/Raft/Raft_LAB3/build/proto/shardkv.pb.cc > CMakeFiles/raft_proto.dir/shardkv.pb.i
+
+proto/CMakeFiles/raft_proto.dir/shardkv.pb.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/raft_proto.dir/shardkv.pb.s"
+	cd /home/river/work/Raft/Raft_LAB3/build/proto && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/river/work/Raft/Raft_LAB3/build/proto/shardkv.pb.cc -o CMakeFiles/raft_proto.dir/shardkv.pb.s
+
 proto/CMakeFiles/raft_proto.dir/raft.grpc.pb.o: proto/CMakeFiles/raft_proto.dir/flags.make
 proto/CMakeFiles/raft_proto.dir/raft.grpc.pb.o: proto/raft.grpc.pb.cc
 proto/CMakeFiles/raft_proto.dir/raft.grpc.pb.o: proto/CMakeFiles/raft_proto.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/river/work/Raft/Raft_LAB3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object proto/CMakeFiles/raft_proto.dir/raft.grpc.pb.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/river/work/Raft/Raft_LAB3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object proto/CMakeFiles/raft_proto.dir/raft.grpc.pb.o"
 	cd /home/river/work/Raft/Raft_LAB3/build/proto && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT proto/CMakeFiles/raft_proto.dir/raft.grpc.pb.o -MF CMakeFiles/raft_proto.dir/raft.grpc.pb.o.d -o CMakeFiles/raft_proto.dir/raft.grpc.pb.o -c /home/river/work/Raft/Raft_LAB3/build/proto/raft.grpc.pb.cc
 
 proto/CMakeFiles/raft_proto.dir/raft.grpc.pb.i: cmake_force
@@ -146,7 +176,7 @@ proto/CMakeFiles/raft_proto.dir/raft.grpc.pb.s: cmake_force
 proto/CMakeFiles/raft_proto.dir/kvserver.grpc.pb.o: proto/CMakeFiles/raft_proto.dir/flags.make
 proto/CMakeFiles/raft_proto.dir/kvserver.grpc.pb.o: proto/kvserver.grpc.pb.cc
 proto/CMakeFiles/raft_proto.dir/kvserver.grpc.pb.o: proto/CMakeFiles/raft_proto.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/river/work/Raft/Raft_LAB3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object proto/CMakeFiles/raft_proto.dir/kvserver.grpc.pb.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/river/work/Raft/Raft_LAB3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object proto/CMakeFiles/raft_proto.dir/kvserver.grpc.pb.o"
 	cd /home/river/work/Raft/Raft_LAB3/build/proto && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT proto/CMakeFiles/raft_proto.dir/kvserver.grpc.pb.o -MF CMakeFiles/raft_proto.dir/kvserver.grpc.pb.o.d -o CMakeFiles/raft_proto.dir/kvserver.grpc.pb.o -c /home/river/work/Raft/Raft_LAB3/build/proto/kvserver.grpc.pb.cc
 
 proto/CMakeFiles/raft_proto.dir/kvserver.grpc.pb.i: cmake_force
@@ -157,23 +187,41 @@ proto/CMakeFiles/raft_proto.dir/kvserver.grpc.pb.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/raft_proto.dir/kvserver.grpc.pb.s"
 	cd /home/river/work/Raft/Raft_LAB3/build/proto && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/river/work/Raft/Raft_LAB3/build/proto/kvserver.grpc.pb.cc -o CMakeFiles/raft_proto.dir/kvserver.grpc.pb.s
 
+proto/CMakeFiles/raft_proto.dir/shardkv.grpc.pb.o: proto/CMakeFiles/raft_proto.dir/flags.make
+proto/CMakeFiles/raft_proto.dir/shardkv.grpc.pb.o: proto/shardkv.grpc.pb.cc
+proto/CMakeFiles/raft_proto.dir/shardkv.grpc.pb.o: proto/CMakeFiles/raft_proto.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/river/work/Raft/Raft_LAB3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object proto/CMakeFiles/raft_proto.dir/shardkv.grpc.pb.o"
+	cd /home/river/work/Raft/Raft_LAB3/build/proto && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT proto/CMakeFiles/raft_proto.dir/shardkv.grpc.pb.o -MF CMakeFiles/raft_proto.dir/shardkv.grpc.pb.o.d -o CMakeFiles/raft_proto.dir/shardkv.grpc.pb.o -c /home/river/work/Raft/Raft_LAB3/build/proto/shardkv.grpc.pb.cc
+
+proto/CMakeFiles/raft_proto.dir/shardkv.grpc.pb.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/raft_proto.dir/shardkv.grpc.pb.i"
+	cd /home/river/work/Raft/Raft_LAB3/build/proto && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/river/work/Raft/Raft_LAB3/build/proto/shardkv.grpc.pb.cc > CMakeFiles/raft_proto.dir/shardkv.grpc.pb.i
+
+proto/CMakeFiles/raft_proto.dir/shardkv.grpc.pb.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/raft_proto.dir/shardkv.grpc.pb.s"
+	cd /home/river/work/Raft/Raft_LAB3/build/proto && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/river/work/Raft/Raft_LAB3/build/proto/shardkv.grpc.pb.cc -o CMakeFiles/raft_proto.dir/shardkv.grpc.pb.s
+
 # Object files for target raft_proto
 raft_proto_OBJECTS = \
 "CMakeFiles/raft_proto.dir/raft.pb.o" \
 "CMakeFiles/raft_proto.dir/kvserver.pb.o" \
+"CMakeFiles/raft_proto.dir/shardkv.pb.o" \
 "CMakeFiles/raft_proto.dir/raft.grpc.pb.o" \
-"CMakeFiles/raft_proto.dir/kvserver.grpc.pb.o"
+"CMakeFiles/raft_proto.dir/kvserver.grpc.pb.o" \
+"CMakeFiles/raft_proto.dir/shardkv.grpc.pb.o"
 
 # External object files for target raft_proto
 raft_proto_EXTERNAL_OBJECTS =
 
 proto/libraft_proto.a: proto/CMakeFiles/raft_proto.dir/raft.pb.o
 proto/libraft_proto.a: proto/CMakeFiles/raft_proto.dir/kvserver.pb.o
+proto/libraft_proto.a: proto/CMakeFiles/raft_proto.dir/shardkv.pb.o
 proto/libraft_proto.a: proto/CMakeFiles/raft_proto.dir/raft.grpc.pb.o
 proto/libraft_proto.a: proto/CMakeFiles/raft_proto.dir/kvserver.grpc.pb.o
+proto/libraft_proto.a: proto/CMakeFiles/raft_proto.dir/shardkv.grpc.pb.o
 proto/libraft_proto.a: proto/CMakeFiles/raft_proto.dir/build.make
 proto/libraft_proto.a: proto/CMakeFiles/raft_proto.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/river/work/Raft/Raft_LAB3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX static library libraft_proto.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/river/work/Raft/Raft_LAB3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX static library libraft_proto.a"
 	cd /home/river/work/Raft/Raft_LAB3/build/proto && $(CMAKE_COMMAND) -P CMakeFiles/raft_proto.dir/cmake_clean_target.cmake
 	cd /home/river/work/Raft/Raft_LAB3/build/proto && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/raft_proto.dir/link.txt --verbose=$(VERBOSE)
 
@@ -193,6 +241,10 @@ proto/CMakeFiles/raft_proto.dir/depend: proto/raft.grpc.pb.cc
 proto/CMakeFiles/raft_proto.dir/depend: proto/raft.grpc.pb.h
 proto/CMakeFiles/raft_proto.dir/depend: proto/raft.pb.cc
 proto/CMakeFiles/raft_proto.dir/depend: proto/raft.pb.h
+proto/CMakeFiles/raft_proto.dir/depend: proto/shardkv.grpc.pb.cc
+proto/CMakeFiles/raft_proto.dir/depend: proto/shardkv.grpc.pb.h
+proto/CMakeFiles/raft_proto.dir/depend: proto/shardkv.pb.cc
+proto/CMakeFiles/raft_proto.dir/depend: proto/shardkv.pb.h
 	cd /home/river/work/Raft/Raft_LAB3/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/river/work/Raft/Raft_LAB3 /home/river/work/Raft/Raft_LAB3/proto /home/river/work/Raft/Raft_LAB3/build /home/river/work/Raft/Raft_LAB3/build/proto /home/river/work/Raft/Raft_LAB3/build/proto/CMakeFiles/raft_proto.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : proto/CMakeFiles/raft_proto.dir/depend
 

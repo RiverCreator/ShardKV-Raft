@@ -34,6 +34,9 @@ message Response{
     bool isWrongLeader = 2;
     bytes response_msg = 3;
 }
+
+//kvshard
+
 service KvRaftServiceRpc{
     rpc Put(PutRequest) returns(PutResponse);
     rpc Get(GetRequest) returns(GetResponse);
