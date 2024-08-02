@@ -1,7 +1,11 @@
 syntax = "proto3";
 package shardkv;
+message GroupConfig{
+    bytes ip = 1;
+    int32 port = 2;
+}
 message JoinConfigs{
-    repeated string config = 1;
+    repeated GroupConfig config = 1;
 }
 message JoinRequest{
     map<int32,JoinConfigs> groups = 1;
@@ -14,13 +18,16 @@ message JoinResponse{
 }
 
 message QueryRequest{
-    int32 gid = 1;
+    int32 configId = 1;
+    int32 requestId = 2;
+    int32 clientId = 3;
 }
 
 message QueryResponse{
     int32 confignum = 1;
     repeated int32 shards = 2;
     map<int32,JoinConfigs> groups = 3;
+    bool isWrongLeader = 4;
 }
 
 message LeaveRequest{

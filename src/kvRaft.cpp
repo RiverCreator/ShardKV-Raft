@@ -1,6 +1,6 @@
 #include "kvRaft.h"
 #include <sstream>
-KVServer::KVServer(std::vector<KVServerInfo> &kvInfo, int me, int snapshotthresh):server(kvInfo[me].kv_ip,kvInfo[me].kv_port,5),m_raft(kvInfo[me].peersInfo.ip,kvInfo[me].peersInfo.port)
+KVServer::KVServer(std::vector<KVServerInfo> &kvInfo, int me, int snapshotthresh):server(kvInfo[me].kv_ip,kvInfo[me].kv_port,5)
 {
     server.setonmessagecb(std::bind(&KVServer::HandleMessage,this, std::placeholders::_1, std::placeholders::_2));
     this->m_ip = kvInfo[me].kv_ip;
@@ -302,7 +302,7 @@ void KVServer::ApplyLoop()
             else{
                 //为普通日志
                 Operation op = msg.GetOperation();
-                int index = msg.m_cmdIndex - 1;
+                int index = msg.m_cmdIndex;
                 {
                     std::lock_guard<std::mutex> lock(this->apidx_mtx);
                     this->m_lastAppliedIndex = index;

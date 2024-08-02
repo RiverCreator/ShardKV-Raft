@@ -10,6 +10,7 @@ RaftGrpcImpl::~RaftGrpcImpl() {}
     response->set_m_conflict_term(res.m_conflict_term());
     response->set_m_success(res.m_success());
     response->set_m_term(res.m_term());
+    response = &res;
     return grpc::Status::OK;
 }
 

@@ -49,7 +49,7 @@ struct TableStruct_shardkv_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[11]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[12]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -57,6 +57,9 @@ struct TableStruct_shardkv_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_shardkv_2eproto;
 namespace shardkv {
+class GroupConfig;
+class GroupConfigDefaultTypeInternal;
+extern GroupConfigDefaultTypeInternal _GroupConfig_default_instance_;
 class JoinConfigs;
 class JoinConfigsDefaultTypeInternal;
 extern JoinConfigsDefaultTypeInternal _JoinConfigs_default_instance_;
@@ -92,6 +95,7 @@ class QueryResponse_GroupsEntry_DoNotUseDefaultTypeInternal;
 extern QueryResponse_GroupsEntry_DoNotUseDefaultTypeInternal _QueryResponse_GroupsEntry_DoNotUse_default_instance_;
 }  // namespace shardkv
 PROTOBUF_NAMESPACE_OPEN
+template<> ::shardkv::GroupConfig* Arena::CreateMaybeMessage<::shardkv::GroupConfig>(Arena*);
 template<> ::shardkv::JoinConfigs* Arena::CreateMaybeMessage<::shardkv::JoinConfigs>(Arena*);
 template<> ::shardkv::JoinRequest* Arena::CreateMaybeMessage<::shardkv::JoinRequest>(Arena*);
 template<> ::shardkv::JoinRequest_GroupsEntry_DoNotUse* Arena::CreateMaybeMessage<::shardkv::JoinRequest_GroupsEntry_DoNotUse>(Arena*);
@@ -107,6 +111,160 @@ PROTOBUF_NAMESPACE_CLOSE
 namespace shardkv {
 
 // ===================================================================
+
+class GroupConfig PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:shardkv.GroupConfig) */ {
+ public:
+  inline GroupConfig() : GroupConfig(nullptr) {}
+  virtual ~GroupConfig();
+
+  GroupConfig(const GroupConfig& from);
+  GroupConfig(GroupConfig&& from) noexcept
+    : GroupConfig() {
+    *this = ::std::move(from);
+  }
+
+  inline GroupConfig& operator=(const GroupConfig& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GroupConfig& operator=(GroupConfig&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const GroupConfig& default_instance();
+
+  static inline const GroupConfig* internal_default_instance() {
+    return reinterpret_cast<const GroupConfig*>(
+               &_GroupConfig_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    0;
+
+  friend void swap(GroupConfig& a, GroupConfig& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GroupConfig* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GroupConfig* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline GroupConfig* New() const final {
+    return CreateMaybeMessage<GroupConfig>(nullptr);
+  }
+
+  GroupConfig* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<GroupConfig>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const GroupConfig& from);
+  void MergeFrom(const GroupConfig& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GroupConfig* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "shardkv.GroupConfig";
+  }
+  protected:
+  explicit GroupConfig(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_shardkv_2eproto);
+    return ::descriptor_table_shardkv_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kIpFieldNumber = 1,
+    kPortFieldNumber = 2,
+  };
+  // bytes ip = 1;
+  void clear_ip();
+  const std::string& ip() const;
+  void set_ip(const std::string& value);
+  void set_ip(std::string&& value);
+  void set_ip(const char* value);
+  void set_ip(const void* value, size_t size);
+  std::string* mutable_ip();
+  std::string* release_ip();
+  void set_allocated_ip(std::string* ip);
+  private:
+  const std::string& _internal_ip() const;
+  void _internal_set_ip(const std::string& value);
+  std::string* _internal_mutable_ip();
+  public:
+
+  // int32 port = 2;
+  void clear_port();
+  ::PROTOBUF_NAMESPACE_ID::int32 port() const;
+  void set_port(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_port() const;
+  void _internal_set_port(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:shardkv.GroupConfig)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr ip_;
+  ::PROTOBUF_NAMESPACE_ID::int32 port_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_shardkv_2eproto;
+};
+// -------------------------------------------------------------------
 
 class JoinConfigs PROTOBUF_FINAL :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:shardkv.JoinConfigs) */ {
@@ -149,7 +307,7 @@ class JoinConfigs PROTOBUF_FINAL :
                &_JoinConfigs_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    0;
+    1;
 
   friend void swap(JoinConfigs& a, JoinConfigs& b) {
     a.Swap(&b);
@@ -222,29 +380,23 @@ class JoinConfigs PROTOBUF_FINAL :
   enum : int {
     kConfigFieldNumber = 1,
   };
-  // repeated string config = 1;
+  // repeated .shardkv.GroupConfig config = 1;
   int config_size() const;
   private:
   int _internal_config_size() const;
   public:
   void clear_config();
-  const std::string& config(int index) const;
-  std::string* mutable_config(int index);
-  void set_config(int index, const std::string& value);
-  void set_config(int index, std::string&& value);
-  void set_config(int index, const char* value);
-  void set_config(int index, const char* value, size_t size);
-  std::string* add_config();
-  void add_config(const std::string& value);
-  void add_config(std::string&& value);
-  void add_config(const char* value);
-  void add_config(const char* value, size_t size);
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& config() const;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_config();
+  ::shardkv::GroupConfig* mutable_config(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::shardkv::GroupConfig >*
+      mutable_config();
   private:
-  const std::string& _internal_config(int index) const;
-  std::string* _internal_add_config();
+  const ::shardkv::GroupConfig& _internal_config(int index) const;
+  ::shardkv::GroupConfig* _internal_add_config();
   public:
+  const ::shardkv::GroupConfig& config(int index) const;
+  ::shardkv::GroupConfig* add_config();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::shardkv::GroupConfig >&
+      config() const;
 
   // @@protoc_insertion_point(class_scope:shardkv.JoinConfigs)
  private:
@@ -253,7 +405,7 @@ class JoinConfigs PROTOBUF_FINAL :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> config_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::shardkv::GroupConfig > config_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_shardkv_2eproto;
 };
@@ -279,7 +431,7 @@ public:
   private:
   static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
     ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_shardkv_2eproto);
-    return ::descriptor_table_shardkv_2eproto.file_level_metadata[1];
+    return ::descriptor_table_shardkv_2eproto.file_level_metadata[2];
   }
 
   public:
@@ -328,7 +480,7 @@ class JoinRequest PROTOBUF_FINAL :
                &_JoinRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    3;
 
   friend void swap(JoinRequest& a, JoinRequest& b) {
     a.Swap(&b);
@@ -499,7 +651,7 @@ class JoinResponse PROTOBUF_FINAL :
                &_JoinResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    4;
 
   friend void swap(JoinResponse& a, JoinResponse& b) {
     a.Swap(&b);
@@ -635,7 +787,7 @@ class QueryRequest PROTOBUF_FINAL :
                &_QueryRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    5;
 
   friend void swap(QueryRequest& a, QueryRequest& b) {
     a.Swap(&b);
@@ -706,15 +858,35 @@ class QueryRequest PROTOBUF_FINAL :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kGidFieldNumber = 1,
+    kConfigIdFieldNumber = 1,
+    kRequestIdFieldNumber = 2,
+    kClientIdFieldNumber = 3,
   };
-  // int32 gid = 1;
-  void clear_gid();
-  ::PROTOBUF_NAMESPACE_ID::int32 gid() const;
-  void set_gid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  // int32 configId = 1;
+  void clear_configid();
+  ::PROTOBUF_NAMESPACE_ID::int32 configid() const;
+  void set_configid(::PROTOBUF_NAMESPACE_ID::int32 value);
   private:
-  ::PROTOBUF_NAMESPACE_ID::int32 _internal_gid() const;
-  void _internal_set_gid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_configid() const;
+  void _internal_set_configid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 requestId = 2;
+  void clear_requestid();
+  ::PROTOBUF_NAMESPACE_ID::int32 requestid() const;
+  void set_requestid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_requestid() const;
+  void _internal_set_requestid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 clientId = 3;
+  void clear_clientid();
+  ::PROTOBUF_NAMESPACE_ID::int32 clientid() const;
+  void set_clientid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_clientid() const;
+  void _internal_set_clientid(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
   // @@protoc_insertion_point(class_scope:shardkv.QueryRequest)
@@ -724,7 +896,9 @@ class QueryRequest PROTOBUF_FINAL :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::int32 gid_;
+  ::PROTOBUF_NAMESPACE_ID::int32 configid_;
+  ::PROTOBUF_NAMESPACE_ID::int32 requestid_;
+  ::PROTOBUF_NAMESPACE_ID::int32 clientid_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_shardkv_2eproto;
 };
@@ -750,7 +924,7 @@ public:
   private:
   static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
     ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_shardkv_2eproto);
-    return ::descriptor_table_shardkv_2eproto.file_level_metadata[5];
+    return ::descriptor_table_shardkv_2eproto.file_level_metadata[6];
   }
 
   public:
@@ -799,7 +973,7 @@ class QueryResponse PROTOBUF_FINAL :
                &_QueryResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    7;
 
   friend void swap(QueryResponse& a, QueryResponse& b) {
     a.Swap(&b);
@@ -874,6 +1048,7 @@ class QueryResponse PROTOBUF_FINAL :
     kShardsFieldNumber = 2,
     kGroupsFieldNumber = 3,
     kConfignumFieldNumber = 1,
+    kIsWrongLeaderFieldNumber = 4,
   };
   // repeated int32 shards = 2;
   int shards_size() const;
@@ -923,6 +1098,15 @@ class QueryResponse PROTOBUF_FINAL :
   void _internal_set_confignum(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
+  // bool isWrongLeader = 4;
+  void clear_iswrongleader();
+  bool iswrongleader() const;
+  void set_iswrongleader(bool value);
+  private:
+  bool _internal_iswrongleader() const;
+  void _internal_set_iswrongleader(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:shardkv.QueryResponse)
  private:
   class _Internal;
@@ -938,6 +1122,7 @@ class QueryResponse PROTOBUF_FINAL :
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32,
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> groups_;
   ::PROTOBUF_NAMESPACE_ID::int32 confignum_;
+  bool iswrongleader_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_shardkv_2eproto;
 };
@@ -984,7 +1169,7 @@ class LeaveRequest PROTOBUF_FINAL :
                &_LeaveRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    8;
 
   friend void swap(LeaveRequest& a, LeaveRequest& b) {
     a.Swap(&b);
@@ -1156,7 +1341,7 @@ class LeaveResponse PROTOBUF_FINAL :
                &_LeaveResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    9;
 
   friend void swap(LeaveResponse& a, LeaveResponse& b) {
     a.Swap(&b);
@@ -1292,7 +1477,7 @@ class MoveRequest PROTOBUF_FINAL :
                &_MoveRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   friend void swap(MoveRequest& a, MoveRequest& b) {
     a.Swap(&b);
@@ -1461,7 +1646,7 @@ class MoveResponse PROTOBUF_FINAL :
                &_MoveResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    11;
 
   friend void swap(MoveResponse& a, MoveResponse& b) {
     a.Swap(&b);
@@ -1563,9 +1748,94 @@ class MoveResponse PROTOBUF_FINAL :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// GroupConfig
+
+// bytes ip = 1;
+inline void GroupConfig::clear_ip() {
+  ip_.ClearToEmpty();
+}
+inline const std::string& GroupConfig::ip() const {
+  // @@protoc_insertion_point(field_get:shardkv.GroupConfig.ip)
+  return _internal_ip();
+}
+inline void GroupConfig::set_ip(const std::string& value) {
+  _internal_set_ip(value);
+  // @@protoc_insertion_point(field_set:shardkv.GroupConfig.ip)
+}
+inline std::string* GroupConfig::mutable_ip() {
+  // @@protoc_insertion_point(field_mutable:shardkv.GroupConfig.ip)
+  return _internal_mutable_ip();
+}
+inline const std::string& GroupConfig::_internal_ip() const {
+  return ip_.Get();
+}
+inline void GroupConfig::_internal_set_ip(const std::string& value) {
+  
+  ip_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void GroupConfig::set_ip(std::string&& value) {
+  
+  ip_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:shardkv.GroupConfig.ip)
+}
+inline void GroupConfig::set_ip(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  ip_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:shardkv.GroupConfig.ip)
+}
+inline void GroupConfig::set_ip(const void* value,
+    size_t size) {
+  
+  ip_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:shardkv.GroupConfig.ip)
+}
+inline std::string* GroupConfig::_internal_mutable_ip() {
+  
+  return ip_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* GroupConfig::release_ip() {
+  // @@protoc_insertion_point(field_release:shardkv.GroupConfig.ip)
+  return ip_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void GroupConfig::set_allocated_ip(std::string* ip) {
+  if (ip != nullptr) {
+    
+  } else {
+    
+  }
+  ip_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ip,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:shardkv.GroupConfig.ip)
+}
+
+// int32 port = 2;
+inline void GroupConfig::clear_port() {
+  port_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 GroupConfig::_internal_port() const {
+  return port_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 GroupConfig::port() const {
+  // @@protoc_insertion_point(field_get:shardkv.GroupConfig.port)
+  return _internal_port();
+}
+inline void GroupConfig::_internal_set_port(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  port_ = value;
+}
+inline void GroupConfig::set_port(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_port(value);
+  // @@protoc_insertion_point(field_set:shardkv.GroupConfig.port)
+}
+
+// -------------------------------------------------------------------
+
 // JoinConfigs
 
-// repeated string config = 1;
+// repeated .shardkv.GroupConfig config = 1;
 inline int JoinConfigs::_internal_config_size() const {
   return config_.size();
 }
@@ -1575,68 +1845,33 @@ inline int JoinConfigs::config_size() const {
 inline void JoinConfigs::clear_config() {
   config_.Clear();
 }
-inline std::string* JoinConfigs::add_config() {
-  // @@protoc_insertion_point(field_add_mutable:shardkv.JoinConfigs.config)
-  return _internal_add_config();
-}
-inline const std::string& JoinConfigs::_internal_config(int index) const {
-  return config_.Get(index);
-}
-inline const std::string& JoinConfigs::config(int index) const {
-  // @@protoc_insertion_point(field_get:shardkv.JoinConfigs.config)
-  return _internal_config(index);
-}
-inline std::string* JoinConfigs::mutable_config(int index) {
+inline ::shardkv::GroupConfig* JoinConfigs::mutable_config(int index) {
   // @@protoc_insertion_point(field_mutable:shardkv.JoinConfigs.config)
   return config_.Mutable(index);
 }
-inline void JoinConfigs::set_config(int index, const std::string& value) {
-  // @@protoc_insertion_point(field_set:shardkv.JoinConfigs.config)
-  config_.Mutable(index)->assign(value);
-}
-inline void JoinConfigs::set_config(int index, std::string&& value) {
-  // @@protoc_insertion_point(field_set:shardkv.JoinConfigs.config)
-  config_.Mutable(index)->assign(std::move(value));
-}
-inline void JoinConfigs::set_config(int index, const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  config_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:shardkv.JoinConfigs.config)
-}
-inline void JoinConfigs::set_config(int index, const char* value, size_t size) {
-  config_.Mutable(index)->assign(
-    reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:shardkv.JoinConfigs.config)
-}
-inline std::string* JoinConfigs::_internal_add_config() {
-  return config_.Add();
-}
-inline void JoinConfigs::add_config(const std::string& value) {
-  config_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:shardkv.JoinConfigs.config)
-}
-inline void JoinConfigs::add_config(std::string&& value) {
-  config_.Add(std::move(value));
-  // @@protoc_insertion_point(field_add:shardkv.JoinConfigs.config)
-}
-inline void JoinConfigs::add_config(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  config_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:shardkv.JoinConfigs.config)
-}
-inline void JoinConfigs::add_config(const char* value, size_t size) {
-  config_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:shardkv.JoinConfigs.config)
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
-JoinConfigs::config() const {
-  // @@protoc_insertion_point(field_list:shardkv.JoinConfigs.config)
-  return config_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::shardkv::GroupConfig >*
 JoinConfigs::mutable_config() {
   // @@protoc_insertion_point(field_mutable_list:shardkv.JoinConfigs.config)
   return &config_;
+}
+inline const ::shardkv::GroupConfig& JoinConfigs::_internal_config(int index) const {
+  return config_.Get(index);
+}
+inline const ::shardkv::GroupConfig& JoinConfigs::config(int index) const {
+  // @@protoc_insertion_point(field_get:shardkv.JoinConfigs.config)
+  return _internal_config(index);
+}
+inline ::shardkv::GroupConfig* JoinConfigs::_internal_add_config() {
+  return config_.Add();
+}
+inline ::shardkv::GroupConfig* JoinConfigs::add_config() {
+  // @@protoc_insertion_point(field_add:shardkv.JoinConfigs.config)
+  return _internal_add_config();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::shardkv::GroupConfig >&
+JoinConfigs::config() const {
+  // @@protoc_insertion_point(field_list:shardkv.JoinConfigs.config)
+  return config_;
 }
 
 // -------------------------------------------------------------------
@@ -1742,24 +1977,64 @@ inline void JoinResponse::set_iswrongleader(bool value) {
 
 // QueryRequest
 
-// int32 gid = 1;
-inline void QueryRequest::clear_gid() {
-  gid_ = 0;
+// int32 configId = 1;
+inline void QueryRequest::clear_configid() {
+  configid_ = 0;
 }
-inline ::PROTOBUF_NAMESPACE_ID::int32 QueryRequest::_internal_gid() const {
-  return gid_;
+inline ::PROTOBUF_NAMESPACE_ID::int32 QueryRequest::_internal_configid() const {
+  return configid_;
 }
-inline ::PROTOBUF_NAMESPACE_ID::int32 QueryRequest::gid() const {
-  // @@protoc_insertion_point(field_get:shardkv.QueryRequest.gid)
-  return _internal_gid();
+inline ::PROTOBUF_NAMESPACE_ID::int32 QueryRequest::configid() const {
+  // @@protoc_insertion_point(field_get:shardkv.QueryRequest.configId)
+  return _internal_configid();
 }
-inline void QueryRequest::_internal_set_gid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+inline void QueryRequest::_internal_set_configid(::PROTOBUF_NAMESPACE_ID::int32 value) {
   
-  gid_ = value;
+  configid_ = value;
 }
-inline void QueryRequest::set_gid(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  _internal_set_gid(value);
-  // @@protoc_insertion_point(field_set:shardkv.QueryRequest.gid)
+inline void QueryRequest::set_configid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_configid(value);
+  // @@protoc_insertion_point(field_set:shardkv.QueryRequest.configId)
+}
+
+// int32 requestId = 2;
+inline void QueryRequest::clear_requestid() {
+  requestid_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 QueryRequest::_internal_requestid() const {
+  return requestid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 QueryRequest::requestid() const {
+  // @@protoc_insertion_point(field_get:shardkv.QueryRequest.requestId)
+  return _internal_requestid();
+}
+inline void QueryRequest::_internal_set_requestid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  requestid_ = value;
+}
+inline void QueryRequest::set_requestid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_requestid(value);
+  // @@protoc_insertion_point(field_set:shardkv.QueryRequest.requestId)
+}
+
+// int32 clientId = 3;
+inline void QueryRequest::clear_clientid() {
+  clientid_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 QueryRequest::_internal_clientid() const {
+  return clientid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 QueryRequest::clientid() const {
+  // @@protoc_insertion_point(field_get:shardkv.QueryRequest.clientId)
+  return _internal_clientid();
+}
+inline void QueryRequest::_internal_set_clientid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  clientid_ = value;
+}
+inline void QueryRequest::set_clientid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_clientid(value);
+  // @@protoc_insertion_point(field_set:shardkv.QueryRequest.clientId)
 }
 
 // -------------------------------------------------------------------
@@ -1862,6 +2137,26 @@ inline ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::shardkv::
 QueryResponse::mutable_groups() {
   // @@protoc_insertion_point(field_mutable_map:shardkv.QueryResponse.groups)
   return _internal_mutable_groups();
+}
+
+// bool isWrongLeader = 4;
+inline void QueryResponse::clear_iswrongleader() {
+  iswrongleader_ = false;
+}
+inline bool QueryResponse::_internal_iswrongleader() const {
+  return iswrongleader_;
+}
+inline bool QueryResponse::iswrongleader() const {
+  // @@protoc_insertion_point(field_get:shardkv.QueryResponse.isWrongLeader)
+  return _internal_iswrongleader();
+}
+inline void QueryResponse::_internal_set_iswrongleader(bool value) {
+  
+  iswrongleader_ = value;
+}
+inline void QueryResponse::set_iswrongleader(bool value) {
+  _internal_set_iswrongleader(value);
+  // @@protoc_insertion_point(field_set:shardkv.QueryResponse.isWrongLeader)
 }
 
 // -------------------------------------------------------------------
@@ -2090,6 +2385,8 @@ inline void MoveResponse::set_iswrongleader(bool value) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

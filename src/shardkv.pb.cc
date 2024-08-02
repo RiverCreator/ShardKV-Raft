@@ -14,10 +14,15 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
-extern PROTOBUF_INTERNAL_EXPORT_shardkv_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_JoinConfigs_shardkv_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_shardkv_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_GroupConfig_shardkv_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_shardkv_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_JoinConfigs_shardkv_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_shardkv_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_JoinRequest_GroupsEntry_DoNotUse_shardkv_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_shardkv_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_QueryResponse_GroupsEntry_DoNotUse_shardkv_2eproto;
 namespace shardkv {
+class GroupConfigDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<GroupConfig> _instance;
+} _GroupConfig_default_instance_;
 class JoinConfigsDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<JoinConfigs> _instance;
@@ -63,6 +68,19 @@ class MoveResponseDefaultTypeInternal {
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<MoveResponse> _instance;
 } _MoveResponse_default_instance_;
 }  // namespace shardkv
+static void InitDefaultsscc_info_GroupConfig_shardkv_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::shardkv::_GroupConfig_default_instance_;
+    new (ptr) ::shardkv::GroupConfig();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_GroupConfig_shardkv_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_GroupConfig_shardkv_2eproto}, {}};
+
 static void InitDefaultsscc_info_JoinConfigs_shardkv_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -73,8 +91,9 @@ static void InitDefaultsscc_info_JoinConfigs_shardkv_2eproto() {
   }
 }
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_JoinConfigs_shardkv_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_JoinConfigs_shardkv_2eproto}, {}};
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_JoinConfigs_shardkv_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_JoinConfigs_shardkv_2eproto}, {
+      &scc_info_GroupConfig_shardkv_2eproto.base,}};
 
 static void InitDefaultsscc_info_JoinRequest_shardkv_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -208,11 +227,18 @@ static void InitDefaultsscc_info_QueryResponse_GroupsEntry_DoNotUse_shardkv_2epr
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_QueryResponse_GroupsEntry_DoNotUse_shardkv_2eproto}, {
       &scc_info_JoinConfigs_shardkv_2eproto.base,}};
 
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_shardkv_2eproto[11];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_shardkv_2eproto[12];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_shardkv_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_shardkv_2eproto = nullptr;
 
 const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_shardkv_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::shardkv::GroupConfig, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::shardkv::GroupConfig, ip_),
+  PROTOBUF_FIELD_OFFSET(::shardkv::GroupConfig, port_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::shardkv::JoinConfigs, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -247,7 +273,9 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_shardkv_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::shardkv::QueryRequest, gid_),
+  PROTOBUF_FIELD_OFFSET(::shardkv::QueryRequest, configid_),
+  PROTOBUF_FIELD_OFFSET(::shardkv::QueryRequest, requestid_),
+  PROTOBUF_FIELD_OFFSET(::shardkv::QueryRequest, clientid_),
   PROTOBUF_FIELD_OFFSET(::shardkv::QueryResponse_GroupsEntry_DoNotUse, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::shardkv::QueryResponse_GroupsEntry_DoNotUse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -265,6 +293,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_shardkv_2eproto::offsets[] PRO
   PROTOBUF_FIELD_OFFSET(::shardkv::QueryResponse, confignum_),
   PROTOBUF_FIELD_OFFSET(::shardkv::QueryResponse, shards_),
   PROTOBUF_FIELD_OFFSET(::shardkv::QueryResponse, groups_),
+  PROTOBUF_FIELD_OFFSET(::shardkv::QueryResponse, iswrongleader_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::shardkv::LeaveRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -296,20 +325,22 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_shardkv_2eproto::offsets[] PRO
   PROTOBUF_FIELD_OFFSET(::shardkv::MoveResponse, iswrongleader_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(::shardkv::JoinConfigs)},
-  { 6, 13, sizeof(::shardkv::JoinRequest_GroupsEntry_DoNotUse)},
-  { 15, -1, sizeof(::shardkv::JoinRequest)},
-  { 23, -1, sizeof(::shardkv::JoinResponse)},
-  { 29, -1, sizeof(::shardkv::QueryRequest)},
-  { 35, 42, sizeof(::shardkv::QueryResponse_GroupsEntry_DoNotUse)},
-  { 44, -1, sizeof(::shardkv::QueryResponse)},
-  { 52, -1, sizeof(::shardkv::LeaveRequest)},
-  { 60, -1, sizeof(::shardkv::LeaveResponse)},
-  { 66, -1, sizeof(::shardkv::MoveRequest)},
-  { 75, -1, sizeof(::shardkv::MoveResponse)},
+  { 0, -1, sizeof(::shardkv::GroupConfig)},
+  { 7, -1, sizeof(::shardkv::JoinConfigs)},
+  { 13, 20, sizeof(::shardkv::JoinRequest_GroupsEntry_DoNotUse)},
+  { 22, -1, sizeof(::shardkv::JoinRequest)},
+  { 30, -1, sizeof(::shardkv::JoinResponse)},
+  { 36, -1, sizeof(::shardkv::QueryRequest)},
+  { 44, 51, sizeof(::shardkv::QueryResponse_GroupsEntry_DoNotUse)},
+  { 53, -1, sizeof(::shardkv::QueryResponse)},
+  { 62, -1, sizeof(::shardkv::LeaveRequest)},
+  { 70, -1, sizeof(::shardkv::LeaveResponse)},
+  { 76, -1, sizeof(::shardkv::MoveRequest)},
+  { 85, -1, sizeof(::shardkv::MoveResponse)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::shardkv::_GroupConfig_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::shardkv::_JoinConfigs_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::shardkv::_JoinRequest_GroupsEntry_DoNotUse_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::shardkv::_JoinRequest_default_instance_),
@@ -324,34 +355,38 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 };
 
 const char descriptor_table_protodef_shardkv_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\rshardkv.proto\022\007shardkv\"\035\n\013JoinConfigs\022"
-  "\016\n\006config\030\001 \003(\t\"\251\001\n\013JoinRequest\0220\n\006group"
-  "s\030\001 \003(\0132 .shardkv.JoinRequest.GroupsEntr"
-  "y\022\021\n\trequestId\030\002 \001(\005\022\020\n\010clientId\030\003 \001(\005\032C"
-  "\n\013GroupsEntry\022\013\n\003key\030\001 \001(\005\022#\n\005value\030\002 \001("
-  "\0132\024.shardkv.JoinConfigs:\0028\001\"%\n\014JoinRespo"
-  "nse\022\025\n\risWrongLeader\030\001 \001(\010\"\033\n\014QueryReque"
-  "st\022\013\n\003gid\030\001 \001(\005\"\253\001\n\rQueryResponse\022\021\n\tcon"
-  "fignum\030\001 \001(\005\022\016\n\006shards\030\002 \003(\005\0222\n\006groups\030\003"
-  " \003(\0132\".shardkv.QueryResponse.GroupsEntry"
-  "\032C\n\013GroupsEntry\022\013\n\003key\030\001 \001(\005\022#\n\005value\030\002 "
-  "\001(\0132\024.shardkv.JoinConfigs:\0028\001\"E\n\014LeaveRe"
-  "quest\022\020\n\010groupIds\030\001 \003(\005\022\021\n\trequestId\030\002 \001"
-  "(\005\022\020\n\010clientId\030\003 \001(\005\"&\n\rLeaveResponse\022\025\n"
-  "\risWrongLeader\030\001 \001(\010\"P\n\013MoveRequest\022\017\n\007s"
-  "hardId\030\001 \001(\005\022\013\n\003gid\030\002 \001(\005\022\021\n\trequestId\030\003"
-  " \001(\005\022\020\n\010clientId\030\004 \001(\005\"%\n\014MoveResponse\022\025"
-  "\n\risWrongLeader\030\001 \001(\0102\346\001\n\nShardKVRpc\0223\n\004"
-  "Join\022\024.shardkv.JoinRequest\032\025.shardkv.Joi"
-  "nResponse\0226\n\005Query\022\025.shardkv.QueryReques"
-  "t\032\026.shardkv.QueryResponse\0226\n\005Leave\022\025.sha"
-  "rdkv.LeaveRequest\032\026.shardkv.LeaveRespons"
-  "e\0223\n\004Move\022\024.shardkv.MoveRequest\032\025.shardk"
-  "v.MoveResponseb\006proto3"
+  "\n\rshardkv.proto\022\007shardkv\"\'\n\013GroupConfig\022"
+  "\n\n\002ip\030\001 \001(\014\022\014\n\004port\030\002 \001(\005\"3\n\013JoinConfigs"
+  "\022$\n\006config\030\001 \003(\0132\024.shardkv.GroupConfig\"\251"
+  "\001\n\013JoinRequest\0220\n\006groups\030\001 \003(\0132 .shardkv"
+  ".JoinRequest.GroupsEntry\022\021\n\trequestId\030\002 "
+  "\001(\005\022\020\n\010clientId\030\003 \001(\005\032C\n\013GroupsEntry\022\013\n\003"
+  "key\030\001 \001(\005\022#\n\005value\030\002 \001(\0132\024.shardkv.JoinC"
+  "onfigs:\0028\001\"%\n\014JoinResponse\022\025\n\risWrongLea"
+  "der\030\001 \001(\010\"E\n\014QueryRequest\022\020\n\010configId\030\001 "
+  "\001(\005\022\021\n\trequestId\030\002 \001(\005\022\020\n\010clientId\030\003 \001(\005"
+  "\"\302\001\n\rQueryResponse\022\021\n\tconfignum\030\001 \001(\005\022\016\n"
+  "\006shards\030\002 \003(\005\0222\n\006groups\030\003 \003(\0132\".shardkv."
+  "QueryResponse.GroupsEntry\022\025\n\risWrongLead"
+  "er\030\004 \001(\010\032C\n\013GroupsEntry\022\013\n\003key\030\001 \001(\005\022#\n\005"
+  "value\030\002 \001(\0132\024.shardkv.JoinConfigs:\0028\001\"E\n"
+  "\014LeaveRequest\022\020\n\010groupIds\030\001 \003(\005\022\021\n\treque"
+  "stId\030\002 \001(\005\022\020\n\010clientId\030\003 \001(\005\"&\n\rLeaveRes"
+  "ponse\022\025\n\risWrongLeader\030\001 \001(\010\"P\n\013MoveRequ"
+  "est\022\017\n\007shardId\030\001 \001(\005\022\013\n\003gid\030\002 \001(\005\022\021\n\treq"
+  "uestId\030\003 \001(\005\022\020\n\010clientId\030\004 \001(\005\"%\n\014MoveRe"
+  "sponse\022\025\n\risWrongLeader\030\001 \001(\0102\346\001\n\nShardK"
+  "VRpc\0223\n\004Join\022\024.shardkv.JoinRequest\032\025.sha"
+  "rdkv.JoinResponse\0226\n\005Query\022\025.shardkv.Que"
+  "ryRequest\032\026.shardkv.QueryResponse\0226\n\005Lea"
+  "ve\022\025.shardkv.LeaveRequest\032\026.shardkv.Leav"
+  "eResponse\0223\n\004Move\022\024.shardkv.MoveRequest\032"
+  "\025.shardkv.MoveResponseb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_shardkv_2eproto_deps[1] = {
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_shardkv_2eproto_sccs[11] = {
+static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_shardkv_2eproto_sccs[12] = {
+  &scc_info_GroupConfig_shardkv_2eproto.base,
   &scc_info_JoinConfigs_shardkv_2eproto.base,
   &scc_info_JoinRequest_shardkv_2eproto.base,
   &scc_info_JoinRequest_GroupsEntry_DoNotUse_shardkv_2eproto.base,
@@ -366,15 +401,243 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_sha
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_shardkv_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_shardkv_2eproto = {
-  false, false, descriptor_table_protodef_shardkv_2eproto, "shardkv.proto", 942,
-  &descriptor_table_shardkv_2eproto_once, descriptor_table_shardkv_2eproto_sccs, descriptor_table_shardkv_2eproto_deps, 11, 0,
+  false, false, descriptor_table_protodef_shardkv_2eproto, "shardkv.proto", 1070,
+  &descriptor_table_shardkv_2eproto_once, descriptor_table_shardkv_2eproto_sccs, descriptor_table_shardkv_2eproto_deps, 12, 0,
   schemas, file_default_instances, TableStruct_shardkv_2eproto::offsets,
-  file_level_metadata_shardkv_2eproto, 11, file_level_enum_descriptors_shardkv_2eproto, file_level_service_descriptors_shardkv_2eproto,
+  file_level_metadata_shardkv_2eproto, 12, file_level_enum_descriptors_shardkv_2eproto, file_level_service_descriptors_shardkv_2eproto,
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
 static bool dynamic_init_dummy_shardkv_2eproto = (static_cast<void>(::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_shardkv_2eproto)), true);
 namespace shardkv {
+
+// ===================================================================
+
+class GroupConfig::_Internal {
+ public:
+};
+
+GroupConfig::GroupConfig(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:shardkv.GroupConfig)
+}
+GroupConfig::GroupConfig(const GroupConfig& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ip_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_ip().empty()) {
+    ip_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_ip(), 
+      GetArena());
+  }
+  port_ = from.port_;
+  // @@protoc_insertion_point(copy_constructor:shardkv.GroupConfig)
+}
+
+void GroupConfig::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_GroupConfig_shardkv_2eproto.base);
+  ip_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  port_ = 0;
+}
+
+GroupConfig::~GroupConfig() {
+  // @@protoc_insertion_point(destructor:shardkv.GroupConfig)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void GroupConfig::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  ip_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void GroupConfig::ArenaDtor(void* object) {
+  GroupConfig* _this = reinterpret_cast< GroupConfig* >(object);
+  (void)_this;
+}
+void GroupConfig::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void GroupConfig::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const GroupConfig& GroupConfig::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_GroupConfig_shardkv_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void GroupConfig::Clear() {
+// @@protoc_insertion_point(message_clear_start:shardkv.GroupConfig)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ip_.ClearToEmpty();
+  port_ = 0;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GroupConfig::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // bytes ip = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_ip();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int32 port = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          port_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* GroupConfig::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:shardkv.GroupConfig)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bytes ip = 1;
+  if (this->ip().size() > 0) {
+    target = stream->WriteBytesMaybeAliased(
+        1, this->_internal_ip(), target);
+  }
+
+  // int32 port = 2;
+  if (this->port() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->_internal_port(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:shardkv.GroupConfig)
+  return target;
+}
+
+size_t GroupConfig::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:shardkv.GroupConfig)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bytes ip = 1;
+  if (this->ip().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
+        this->_internal_ip());
+  }
+
+  // int32 port = 2;
+  if (this->port() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_port());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void GroupConfig::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:shardkv.GroupConfig)
+  GOOGLE_DCHECK_NE(&from, this);
+  const GroupConfig* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<GroupConfig>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:shardkv.GroupConfig)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:shardkv.GroupConfig)
+    MergeFrom(*source);
+  }
+}
+
+void GroupConfig::MergeFrom(const GroupConfig& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:shardkv.GroupConfig)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.ip().size() > 0) {
+    _internal_set_ip(from._internal_ip());
+  }
+  if (from.port() != 0) {
+    _internal_set_port(from._internal_port());
+  }
+}
+
+void GroupConfig::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:shardkv.GroupConfig)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void GroupConfig::CopyFrom(const GroupConfig& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:shardkv.GroupConfig)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GroupConfig::IsInitialized() const {
+  return true;
+}
+
+void GroupConfig::InternalSwap(GroupConfig* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  ip_.Swap(&other->ip_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  swap(port_, other->port_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GroupConfig::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
 
 // ===================================================================
 
@@ -442,15 +705,13 @@ const char* JoinConfigs::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
     switch (tag >> 3) {
-      // repeated string config = 1;
+      // repeated .shardkv.GroupConfig config = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
           ptr -= 1;
           do {
             ptr += 1;
-            auto str = _internal_add_config();
-            ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-            CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "shardkv.JoinConfigs.config"));
+            ptr = ctx->ParseMessage(_internal_add_config(), ptr);
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
@@ -484,14 +745,12 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated string config = 1;
-  for (int i = 0, n = this->_internal_config_size(); i < n; i++) {
-    const auto& s = this->_internal_config(i);
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      s.data(), static_cast<int>(s.length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "shardkv.JoinConfigs.config");
-    target = stream->WriteString(1, s, target);
+  // repeated .shardkv.GroupConfig config = 1;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->_internal_config_size()); i < n; i++) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, this->_internal_config(i), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -510,12 +769,11 @@ size_t JoinConfigs::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated string config = 1;
-  total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(config_.size());
-  for (int i = 0, n = config_.size(); i < n; i++) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-      config_.Get(i));
+  // repeated .shardkv.GroupConfig config = 1;
+  total_size += 1UL * this->_internal_config_size();
+  for (const auto& msg : this->config_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1092,12 +1350,17 @@ QueryRequest::QueryRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
 QueryRequest::QueryRequest(const QueryRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  gid_ = from.gid_;
+  ::memcpy(&configid_, &from.configid_,
+    static_cast<size_t>(reinterpret_cast<char*>(&clientid_) -
+    reinterpret_cast<char*>(&configid_)) + sizeof(clientid_));
   // @@protoc_insertion_point(copy_constructor:shardkv.QueryRequest)
 }
 
 void QueryRequest::SharedCtor() {
-  gid_ = 0;
+  ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+      reinterpret_cast<char*>(&configid_) - reinterpret_cast<char*>(this)),
+      0, static_cast<size_t>(reinterpret_cast<char*>(&clientid_) -
+      reinterpret_cast<char*>(&configid_)) + sizeof(clientid_));
 }
 
 QueryRequest::~QueryRequest() {
@@ -1131,7 +1394,9 @@ void QueryRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  gid_ = 0;
+  ::memset(&configid_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&clientid_) -
+      reinterpret_cast<char*>(&configid_)) + sizeof(clientid_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1142,10 +1407,24 @@ const char* QueryRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
     switch (tag >> 3) {
-      // int32 gid = 1;
+      // int32 configId = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          gid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          configid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int32 requestId = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          requestid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int32 clientId = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
+          clientid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -1177,10 +1456,22 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // int32 gid = 1;
-  if (this->gid() != 0) {
+  // int32 configId = 1;
+  if (this->configid() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_gid(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_configid(), target);
+  }
+
+  // int32 requestId = 2;
+  if (this->requestid() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->_internal_requestid(), target);
+  }
+
+  // int32 clientId = 3;
+  if (this->clientid() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(3, this->_internal_clientid(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1199,11 +1490,25 @@ size_t QueryRequest::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // int32 gid = 1;
-  if (this->gid() != 0) {
+  // int32 configId = 1;
+  if (this->configid() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
-        this->_internal_gid());
+        this->_internal_configid());
+  }
+
+  // int32 requestId = 2;
+  if (this->requestid() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_requestid());
+  }
+
+  // int32 clientId = 3;
+  if (this->clientid() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_clientid());
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1237,8 +1542,14 @@ void QueryRequest::MergeFrom(const QueryRequest& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from.gid() != 0) {
-    _internal_set_gid(from._internal_gid());
+  if (from.configid() != 0) {
+    _internal_set_configid(from._internal_configid());
+  }
+  if (from.requestid() != 0) {
+    _internal_set_requestid(from._internal_requestid());
+  }
+  if (from.clientid() != 0) {
+    _internal_set_clientid(from._internal_clientid());
   }
 }
 
@@ -1263,7 +1574,12 @@ bool QueryRequest::IsInitialized() const {
 void QueryRequest::InternalSwap(QueryRequest* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
-  swap(gid_, other->gid_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(QueryRequest, clientid_)
+      + sizeof(QueryRequest::clientid_)
+      - PROTOBUF_FIELD_OFFSET(QueryRequest, configid_)>(
+          reinterpret_cast<char*>(&configid_),
+          reinterpret_cast<char*>(&other->configid_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata QueryRequest::GetMetadata() const {
@@ -1307,13 +1623,18 @@ QueryResponse::QueryResponse(const QueryResponse& from)
       shards_(from.shards_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   groups_.MergeFrom(from.groups_);
-  confignum_ = from.confignum_;
+  ::memcpy(&confignum_, &from.confignum_,
+    static_cast<size_t>(reinterpret_cast<char*>(&iswrongleader_) -
+    reinterpret_cast<char*>(&confignum_)) + sizeof(iswrongleader_));
   // @@protoc_insertion_point(copy_constructor:shardkv.QueryResponse)
 }
 
 void QueryResponse::SharedCtor() {
   ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_QueryResponse_shardkv_2eproto.base);
-  confignum_ = 0;
+  ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+      reinterpret_cast<char*>(&confignum_) - reinterpret_cast<char*>(this)),
+      0, static_cast<size_t>(reinterpret_cast<char*>(&iswrongleader_) -
+      reinterpret_cast<char*>(&confignum_)) + sizeof(iswrongleader_));
 }
 
 QueryResponse::~QueryResponse() {
@@ -1349,7 +1670,9 @@ void QueryResponse::Clear() {
 
   shards_.Clear();
   groups_.Clear();
-  confignum_ = 0;
+  ::memset(&confignum_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&iswrongleader_) -
+      reinterpret_cast<char*>(&confignum_)) + sizeof(iswrongleader_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1387,6 +1710,13 @@ const char* QueryResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<26>(ptr));
+        } else goto handle_unusual;
+        continue;
+      // bool isWrongLeader = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
+          iswrongleader_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
         } else goto handle_unusual;
         continue;
       default: {
@@ -1463,6 +1793,12 @@ failure:
     }
   }
 
+  // bool isWrongLeader = 4;
+  if (this->iswrongleader() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(4, this->_internal_iswrongleader(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1510,6 +1846,11 @@ size_t QueryResponse::ByteSizeLong() const {
         this->_internal_confignum());
   }
 
+  // bool isWrongLeader = 4;
+  if (this->iswrongleader() != 0) {
+    total_size += 1 + 1;
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
         _internal_metadata_, total_size, &_cached_size_);
@@ -1546,6 +1887,9 @@ void QueryResponse::MergeFrom(const QueryResponse& from) {
   if (from.confignum() != 0) {
     _internal_set_confignum(from._internal_confignum());
   }
+  if (from.iswrongleader() != 0) {
+    _internal_set_iswrongleader(from._internal_iswrongleader());
+  }
 }
 
 void QueryResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -1571,7 +1915,12 @@ void QueryResponse::InternalSwap(QueryResponse* other) {
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   shards_.InternalSwap(&other->shards_);
   groups_.Swap(&other->groups_);
-  swap(confignum_, other->confignum_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(QueryResponse, iswrongleader_)
+      + sizeof(QueryResponse::iswrongleader_)
+      - PROTOBUF_FIELD_OFFSET(QueryResponse, confignum_)>(
+          reinterpret_cast<char*>(&confignum_),
+          reinterpret_cast<char*>(&other->confignum_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata QueryResponse::GetMetadata() const {
@@ -2509,6 +2858,9 @@ void MoveResponse::InternalSwap(MoveResponse* other) {
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace shardkv
 PROTOBUF_NAMESPACE_OPEN
+template<> PROTOBUF_NOINLINE ::shardkv::GroupConfig* Arena::CreateMaybeMessage< ::shardkv::GroupConfig >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::shardkv::GroupConfig >(arena);
+}
 template<> PROTOBUF_NOINLINE ::shardkv::JoinConfigs* Arena::CreateMaybeMessage< ::shardkv::JoinConfigs >(Arena* arena) {
   return Arena::CreateMessageInternal< ::shardkv::JoinConfigs >(arena);
 }

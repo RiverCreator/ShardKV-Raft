@@ -1,5 +1,5 @@
 #include "RaftServer.h"
-Raft::Raft(std::string ip,int port):thread_pool_(ThreadPool_::GetThreadPool(5)),rpc_thread(&Raft::RPCLoop,this,ip,port){
+Raft::Raft():thread_pool_(ThreadPool_::GetThreadPool(5)){
 
 }
 
@@ -44,7 +44,7 @@ void Raft::Init(std::vector<PeersInfo> &peers, int id)
         stub_channels_.emplace_back(channel);
         stub_ptrs_.emplace_back(rf::RaftServerRpc::NewStub(channel));
     }
-    
+    rpc_thread = std::thread(&Raft::RPCLoop,this,peers[id].ip,peers[id].port);
     election_loop_thread=std::thread(&Raft::ElectionLoop,this);
     process_entry_thread=std::thread(&Raft::ProcessEntriesLoop,this);
     applylog_thread=std::thread(&Raft::ApplyLogLoop,this);
@@ -102,14 +102,13 @@ StartRet Raft::Start(Operation op)
         ret.isLeader = false;
         return ret;
     }
-    ret.m_cmdIndex = this->lastindex();
-    ret.m_curTerm = m_curTerm;
-    ret.isLeader = true;
-
     LogEntry log;
     log.m_cmd = op.getCmd();
     log.m_term = m_curTerm;
     PushBackLog(log);
+    ret.m_cmdIndex = this->lastindex();
+    ret.m_curTerm = m_curTerm;
+    ret.isLeader = true;
     
     return ret;
 }

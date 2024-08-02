@@ -21,5 +21,4 @@ private:
     std::function<rf::AppendEntriesResponse(const rf::AppendEntriesRequest*)> appcb;
     std::function<rf::ResponseVote(const rf::RequestVote*)> votecb;
     std::function<rf::InstallSnapShotResponse(const rf::InstallSnapShotRequest*)> snapcb;
-    std::mutex mtx;
 };

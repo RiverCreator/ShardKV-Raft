@@ -22,6 +22,7 @@
 #include <grpcpp/create_channel.h>
 #include <grpcpp/grpcpp.h>
 #include "raft.grpc.pb.h"
+#include "common.h"
 #define HEART_BEART_PERIOD 100000
 /**
  * @brief 记录其他节点的ip和port
@@ -85,22 +86,6 @@ struct StartRet{
     bool isLeader;
 };
 
-/**
- * @brief 记录操作 
- * 
- */
-struct Operation{
-    std::string getCmd(){
-        return op + " " + key + " " + value + " "+ std::to_string(clientId) + " " + std::to_string(requestId);;
-    }
-    std::string op;
-    std::string key;
-    std::string value;
-    int clientId; //记录是哪个客户端记录的
-    int requestId; //这个client发送的第几条请求
-    int op_term; //操作写入raft层时的term
-    int op_index; //操作写入raft层时的index
-};
 
 /**
  * @brief 向上层提交日志 //TODO 结构优化 
@@ -122,7 +107,7 @@ struct ApplyMsg{
 
 class Raft{
 public:
-    Raft(std::string ip,int port);
+    Raft();
     ~Raft();
     // //监听投票
     // void ListenForVote();
