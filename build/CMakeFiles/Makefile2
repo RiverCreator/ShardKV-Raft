@@ -96,18 +96,37 @@ proto/clean: proto/CMakeFiles/raft_proto.dir/clean
 # Directory level rules for directory src
 
 # Recursive "all" directory target.
-src/all: src/CMakeFiles/raft.dir/all
-src/all: src/CMakeFiles/cli.dir/all
+src/all: src/shardkv/all
 .PHONY : src/all
 
 # Recursive "preinstall" directory target.
-src/preinstall:
+src/preinstall: src/shardkv/preinstall
 .PHONY : src/preinstall
 
 # Recursive "clean" directory target.
-src/clean: src/CMakeFiles/raft.dir/clean
-src/clean: src/CMakeFiles/cli.dir/clean
+src/clean: src/shardkv/clean
 .PHONY : src/clean
+
+#=============================================================================
+# Directory level rules for directory src/shardkv
+
+# Recursive "all" directory target.
+src/shardkv/all: src/shardkv/CMakeFiles/shardserver.dir/all
+src/shardkv/all: src/shardkv/CMakeFiles/shardclient.dir/all
+src/shardkv/all: src/shardkv/CMakeFiles/master.dir/all
+src/shardkv/all: src/shardkv/CMakeFiles/clerk.dir/all
+.PHONY : src/shardkv/all
+
+# Recursive "preinstall" directory target.
+src/shardkv/preinstall:
+.PHONY : src/shardkv/preinstall
+
+# Recursive "clean" directory target.
+src/shardkv/clean: src/shardkv/CMakeFiles/shardserver.dir/clean
+src/shardkv/clean: src/shardkv/CMakeFiles/shardclient.dir/clean
+src/shardkv/clean: src/shardkv/CMakeFiles/master.dir/clean
+src/shardkv/clean: src/shardkv/CMakeFiles/clerk.dir/clean
+.PHONY : src/shardkv/clean
 
 #=============================================================================
 # Target rules for target proto/CMakeFiles/raft_proto.dir
@@ -136,56 +155,108 @@ proto/CMakeFiles/raft_proto.dir/clean:
 .PHONY : proto/CMakeFiles/raft_proto.dir/clean
 
 #=============================================================================
-# Target rules for target src/CMakeFiles/raft.dir
+# Target rules for target src/shardkv/CMakeFiles/shardserver.dir
 
 # All Build rule for target.
-src/CMakeFiles/raft.dir/all: proto/CMakeFiles/raft_proto.dir/all
-	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/raft.dir/build.make src/CMakeFiles/raft.dir/depend
-	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/raft.dir/build.make src/CMakeFiles/raft.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/river/work/Raft/Raft_LAB3/build/CMakeFiles --progress-num=3,4,5,6,7,8,9,10,11 "Built target raft"
-.PHONY : src/CMakeFiles/raft.dir/all
+src/shardkv/CMakeFiles/shardserver.dir/all: proto/CMakeFiles/raft_proto.dir/all
+	$(MAKE) $(MAKESILENT) -f src/shardkv/CMakeFiles/shardserver.dir/build.make src/shardkv/CMakeFiles/shardserver.dir/depend
+	$(MAKE) $(MAKESILENT) -f src/shardkv/CMakeFiles/shardserver.dir/build.make src/shardkv/CMakeFiles/shardserver.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/river/work/Raft/Raft_LAB3/build/CMakeFiles --progress-num=30,31,32,33,34,35,36,37 "Built target shardserver"
+.PHONY : src/shardkv/CMakeFiles/shardserver.dir/all
 
 # Build rule for subdir invocation for target.
-src/CMakeFiles/raft.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/river/work/Raft/Raft_LAB3/build/CMakeFiles 22
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/raft.dir/all
+src/shardkv/CMakeFiles/shardserver.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/river/work/Raft/Raft_LAB3/build/CMakeFiles 21
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/shardkv/CMakeFiles/shardserver.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/river/work/Raft/Raft_LAB3/build/CMakeFiles 0
-.PHONY : src/CMakeFiles/raft.dir/rule
+.PHONY : src/shardkv/CMakeFiles/shardserver.dir/rule
 
 # Convenience name for target.
-raft: src/CMakeFiles/raft.dir/rule
-.PHONY : raft
+shardserver: src/shardkv/CMakeFiles/shardserver.dir/rule
+.PHONY : shardserver
 
 # clean rule for target.
-src/CMakeFiles/raft.dir/clean:
-	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/raft.dir/build.make src/CMakeFiles/raft.dir/clean
-.PHONY : src/CMakeFiles/raft.dir/clean
+src/shardkv/CMakeFiles/shardserver.dir/clean:
+	$(MAKE) $(MAKESILENT) -f src/shardkv/CMakeFiles/shardserver.dir/build.make src/shardkv/CMakeFiles/shardserver.dir/clean
+.PHONY : src/shardkv/CMakeFiles/shardserver.dir/clean
 
 #=============================================================================
-# Target rules for target src/CMakeFiles/cli.dir
+# Target rules for target src/shardkv/CMakeFiles/shardclient.dir
 
 # All Build rule for target.
-src/CMakeFiles/cli.dir/all: proto/CMakeFiles/raft_proto.dir/all
-	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/cli.dir/build.make src/CMakeFiles/cli.dir/depend
-	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/cli.dir/build.make src/CMakeFiles/cli.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/river/work/Raft/Raft_LAB3/build/CMakeFiles --progress-num=1,2 "Built target cli"
-.PHONY : src/CMakeFiles/cli.dir/all
+src/shardkv/CMakeFiles/shardclient.dir/all: proto/CMakeFiles/raft_proto.dir/all
+	$(MAKE) $(MAKESILENT) -f src/shardkv/CMakeFiles/shardclient.dir/build.make src/shardkv/CMakeFiles/shardclient.dir/depend
+	$(MAKE) $(MAKESILENT) -f src/shardkv/CMakeFiles/shardclient.dir/build.make src/shardkv/CMakeFiles/shardclient.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/river/work/Raft/Raft_LAB3/build/CMakeFiles --progress-num=25,26,27,28,29 "Built target shardclient"
+.PHONY : src/shardkv/CMakeFiles/shardclient.dir/all
 
 # Build rule for subdir invocation for target.
-src/CMakeFiles/cli.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/river/work/Raft/Raft_LAB3/build/CMakeFiles 15
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/cli.dir/all
+src/shardkv/CMakeFiles/shardclient.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/river/work/Raft/Raft_LAB3/build/CMakeFiles 18
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/shardkv/CMakeFiles/shardclient.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/river/work/Raft/Raft_LAB3/build/CMakeFiles 0
-.PHONY : src/CMakeFiles/cli.dir/rule
+.PHONY : src/shardkv/CMakeFiles/shardclient.dir/rule
 
 # Convenience name for target.
-cli: src/CMakeFiles/cli.dir/rule
-.PHONY : cli
+shardclient: src/shardkv/CMakeFiles/shardclient.dir/rule
+.PHONY : shardclient
 
 # clean rule for target.
-src/CMakeFiles/cli.dir/clean:
-	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/cli.dir/build.make src/CMakeFiles/cli.dir/clean
-.PHONY : src/CMakeFiles/cli.dir/clean
+src/shardkv/CMakeFiles/shardclient.dir/clean:
+	$(MAKE) $(MAKESILENT) -f src/shardkv/CMakeFiles/shardclient.dir/build.make src/shardkv/CMakeFiles/shardclient.dir/clean
+.PHONY : src/shardkv/CMakeFiles/shardclient.dir/clean
+
+#=============================================================================
+# Target rules for target src/shardkv/CMakeFiles/master.dir
+
+# All Build rule for target.
+src/shardkv/CMakeFiles/master.dir/all: proto/CMakeFiles/raft_proto.dir/all
+	$(MAKE) $(MAKESILENT) -f src/shardkv/CMakeFiles/master.dir/build.make src/shardkv/CMakeFiles/master.dir/depend
+	$(MAKE) $(MAKESILENT) -f src/shardkv/CMakeFiles/master.dir/build.make src/shardkv/CMakeFiles/master.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/river/work/Raft/Raft_LAB3/build/CMakeFiles --progress-num=5,6,7,8,9,10,11 "Built target master"
+.PHONY : src/shardkv/CMakeFiles/master.dir/all
+
+# Build rule for subdir invocation for target.
+src/shardkv/CMakeFiles/master.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/river/work/Raft/Raft_LAB3/build/CMakeFiles 20
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/shardkv/CMakeFiles/master.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/river/work/Raft/Raft_LAB3/build/CMakeFiles 0
+.PHONY : src/shardkv/CMakeFiles/master.dir/rule
+
+# Convenience name for target.
+master: src/shardkv/CMakeFiles/master.dir/rule
+.PHONY : master
+
+# clean rule for target.
+src/shardkv/CMakeFiles/master.dir/clean:
+	$(MAKE) $(MAKESILENT) -f src/shardkv/CMakeFiles/master.dir/build.make src/shardkv/CMakeFiles/master.dir/clean
+.PHONY : src/shardkv/CMakeFiles/master.dir/clean
+
+#=============================================================================
+# Target rules for target src/shardkv/CMakeFiles/clerk.dir
+
+# All Build rule for target.
+src/shardkv/CMakeFiles/clerk.dir/all: proto/CMakeFiles/raft_proto.dir/all
+	$(MAKE) $(MAKESILENT) -f src/shardkv/CMakeFiles/clerk.dir/build.make src/shardkv/CMakeFiles/clerk.dir/depend
+	$(MAKE) $(MAKESILENT) -f src/shardkv/CMakeFiles/clerk.dir/build.make src/shardkv/CMakeFiles/clerk.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/river/work/Raft/Raft_LAB3/build/CMakeFiles --progress-num=1,2,3,4 "Built target clerk"
+.PHONY : src/shardkv/CMakeFiles/clerk.dir/all
+
+# Build rule for subdir invocation for target.
+src/shardkv/CMakeFiles/clerk.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/river/work/Raft/Raft_LAB3/build/CMakeFiles 17
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/shardkv/CMakeFiles/clerk.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/river/work/Raft/Raft_LAB3/build/CMakeFiles 0
+.PHONY : src/shardkv/CMakeFiles/clerk.dir/rule
+
+# Convenience name for target.
+clerk: src/shardkv/CMakeFiles/clerk.dir/rule
+.PHONY : clerk
+
+# clean rule for target.
+src/shardkv/CMakeFiles/clerk.dir/clean:
+	$(MAKE) $(MAKESILENT) -f src/shardkv/CMakeFiles/clerk.dir/build.make src/shardkv/CMakeFiles/clerk.dir/clean
+.PHONY : src/shardkv/CMakeFiles/clerk.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

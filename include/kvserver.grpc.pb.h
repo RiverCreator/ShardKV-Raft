@@ -28,8 +28,6 @@
 
 namespace kvrf {
 
-// kvshard
-//
 class KvRaftServiceRpc final {
  public:
   static constexpr char const* service_full_name() {
@@ -51,6 +49,20 @@ class KvRaftServiceRpc final {
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::kvrf::GetResponse>> PrepareAsyncGet(::grpc::ClientContext* context, const ::kvrf::GetRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::kvrf::GetResponse>>(PrepareAsyncGetRaw(context, request, cq));
+    }
+    virtual ::grpc::Status Migrate(::grpc::ClientContext* context, const ::kvrf::MigrationRequest& request, ::kvrf::MigrationResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::kvrf::MigrationResponse>> AsyncMigrate(::grpc::ClientContext* context, const ::kvrf::MigrationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::kvrf::MigrationResponse>>(AsyncMigrateRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::kvrf::MigrationResponse>> PrepareAsyncMigrate(::grpc::ClientContext* context, const ::kvrf::MigrationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::kvrf::MigrationResponse>>(PrepareAsyncMigrateRaw(context, request, cq));
+    }
+    virtual ::grpc::Status Ack(::grpc::ClientContext* context, const ::kvrf::AckRequest& request, ::kvrf::AckResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::kvrf::AckResponse>> AsyncAck(::grpc::ClientContext* context, const ::kvrf::AckRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::kvrf::AckResponse>>(AsyncAckRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::kvrf::AckResponse>> PrepareAsyncAck(::grpc::ClientContext* context, const ::kvrf::AckRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::kvrf::AckResponse>>(PrepareAsyncAckRaw(context, request, cq));
     }
     class experimental_async_interface {
      public:
@@ -79,6 +91,30 @@ class KvRaftServiceRpc final {
       #else
       virtual void Get(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::kvrf::GetResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
+      virtual void Migrate(::grpc::ClientContext* context, const ::kvrf::MigrationRequest* request, ::kvrf::MigrationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Migrate(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::kvrf::MigrationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void Migrate(::grpc::ClientContext* context, const ::kvrf::MigrationRequest* request, ::kvrf::MigrationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void Migrate(::grpc::ClientContext* context, const ::kvrf::MigrationRequest* request, ::kvrf::MigrationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void Migrate(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::kvrf::MigrationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void Migrate(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::kvrf::MigrationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      virtual void Ack(::grpc::ClientContext* context, const ::kvrf::AckRequest* request, ::kvrf::AckResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Ack(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::kvrf::AckResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void Ack(::grpc::ClientContext* context, const ::kvrf::AckRequest* request, ::kvrf::AckResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void Ack(::grpc::ClientContext* context, const ::kvrf::AckRequest* request, ::kvrf::AckResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void Ack(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::kvrf::AckResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void Ack(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::kvrf::AckResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
     };
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     typedef class experimental_async_interface async_interface;
@@ -92,6 +128,10 @@ class KvRaftServiceRpc final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::kvrf::PutResponse>* PrepareAsyncPutRaw(::grpc::ClientContext* context, const ::kvrf::PutRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::kvrf::GetResponse>* AsyncGetRaw(::grpc::ClientContext* context, const ::kvrf::GetRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::kvrf::GetResponse>* PrepareAsyncGetRaw(::grpc::ClientContext* context, const ::kvrf::GetRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::kvrf::MigrationResponse>* AsyncMigrateRaw(::grpc::ClientContext* context, const ::kvrf::MigrationRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::kvrf::MigrationResponse>* PrepareAsyncMigrateRaw(::grpc::ClientContext* context, const ::kvrf::MigrationRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::kvrf::AckResponse>* AsyncAckRaw(::grpc::ClientContext* context, const ::kvrf::AckRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::kvrf::AckResponse>* PrepareAsyncAckRaw(::grpc::ClientContext* context, const ::kvrf::AckRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -109,6 +149,20 @@ class KvRaftServiceRpc final {
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::kvrf::GetResponse>> PrepareAsyncGet(::grpc::ClientContext* context, const ::kvrf::GetRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::kvrf::GetResponse>>(PrepareAsyncGetRaw(context, request, cq));
+    }
+    ::grpc::Status Migrate(::grpc::ClientContext* context, const ::kvrf::MigrationRequest& request, ::kvrf::MigrationResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::kvrf::MigrationResponse>> AsyncMigrate(::grpc::ClientContext* context, const ::kvrf::MigrationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::kvrf::MigrationResponse>>(AsyncMigrateRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::kvrf::MigrationResponse>> PrepareAsyncMigrate(::grpc::ClientContext* context, const ::kvrf::MigrationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::kvrf::MigrationResponse>>(PrepareAsyncMigrateRaw(context, request, cq));
+    }
+    ::grpc::Status Ack(::grpc::ClientContext* context, const ::kvrf::AckRequest& request, ::kvrf::AckResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::kvrf::AckResponse>> AsyncAck(::grpc::ClientContext* context, const ::kvrf::AckRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::kvrf::AckResponse>>(AsyncAckRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::kvrf::AckResponse>> PrepareAsyncAck(::grpc::ClientContext* context, const ::kvrf::AckRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::kvrf::AckResponse>>(PrepareAsyncAckRaw(context, request, cq));
     }
     class experimental_async final :
       public StubInterface::experimental_async_interface {
@@ -137,6 +191,30 @@ class KvRaftServiceRpc final {
       #else
       void Get(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::kvrf::GetResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
+      void Migrate(::grpc::ClientContext* context, const ::kvrf::MigrationRequest* request, ::kvrf::MigrationResponse* response, std::function<void(::grpc::Status)>) override;
+      void Migrate(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::kvrf::MigrationResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void Migrate(::grpc::ClientContext* context, const ::kvrf::MigrationRequest* request, ::kvrf::MigrationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void Migrate(::grpc::ClientContext* context, const ::kvrf::MigrationRequest* request, ::kvrf::MigrationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void Migrate(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::kvrf::MigrationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void Migrate(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::kvrf::MigrationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void Ack(::grpc::ClientContext* context, const ::kvrf::AckRequest* request, ::kvrf::AckResponse* response, std::function<void(::grpc::Status)>) override;
+      void Ack(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::kvrf::AckResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void Ack(::grpc::ClientContext* context, const ::kvrf::AckRequest* request, ::kvrf::AckResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void Ack(::grpc::ClientContext* context, const ::kvrf::AckRequest* request, ::kvrf::AckResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void Ack(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::kvrf::AckResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void Ack(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::kvrf::AckResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
      private:
       friend class Stub;
       explicit experimental_async(Stub* stub): stub_(stub) { }
@@ -152,8 +230,14 @@ class KvRaftServiceRpc final {
     ::grpc::ClientAsyncResponseReader< ::kvrf::PutResponse>* PrepareAsyncPutRaw(::grpc::ClientContext* context, const ::kvrf::PutRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::kvrf::GetResponse>* AsyncGetRaw(::grpc::ClientContext* context, const ::kvrf::GetRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::kvrf::GetResponse>* PrepareAsyncGetRaw(::grpc::ClientContext* context, const ::kvrf::GetRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::kvrf::MigrationResponse>* AsyncMigrateRaw(::grpc::ClientContext* context, const ::kvrf::MigrationRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::kvrf::MigrationResponse>* PrepareAsyncMigrateRaw(::grpc::ClientContext* context, const ::kvrf::MigrationRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::kvrf::AckResponse>* AsyncAckRaw(::grpc::ClientContext* context, const ::kvrf::AckRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::kvrf::AckResponse>* PrepareAsyncAckRaw(::grpc::ClientContext* context, const ::kvrf::AckRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Put_;
     const ::grpc::internal::RpcMethod rpcmethod_Get_;
+    const ::grpc::internal::RpcMethod rpcmethod_Migrate_;
+    const ::grpc::internal::RpcMethod rpcmethod_Ack_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -163,6 +247,8 @@ class KvRaftServiceRpc final {
     virtual ~Service();
     virtual ::grpc::Status Put(::grpc::ServerContext* context, const ::kvrf::PutRequest* request, ::kvrf::PutResponse* response);
     virtual ::grpc::Status Get(::grpc::ServerContext* context, const ::kvrf::GetRequest* request, ::kvrf::GetResponse* response);
+    virtual ::grpc::Status Migrate(::grpc::ServerContext* context, const ::kvrf::MigrationRequest* request, ::kvrf::MigrationResponse* response);
+    virtual ::grpc::Status Ack(::grpc::ServerContext* context, const ::kvrf::AckRequest* request, ::kvrf::AckResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_Put : public BaseClass {
@@ -204,7 +290,47 @@ class KvRaftServiceRpc final {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_Put<WithAsyncMethod_Get<Service > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_Migrate : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Migrate() {
+      ::grpc::Service::MarkMethodAsync(2);
+    }
+    ~WithAsyncMethod_Migrate() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Migrate(::grpc::ServerContext* /*context*/, const ::kvrf::MigrationRequest* /*request*/, ::kvrf::MigrationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestMigrate(::grpc::ServerContext* context, ::kvrf::MigrationRequest* request, ::grpc::ServerAsyncResponseWriter< ::kvrf::MigrationResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Ack : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Ack() {
+      ::grpc::Service::MarkMethodAsync(3);
+    }
+    ~WithAsyncMethod_Ack() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Ack(::grpc::ServerContext* /*context*/, const ::kvrf::AckRequest* /*request*/, ::kvrf::AckResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestAck(::grpc::ServerContext* context, ::kvrf::AckRequest* request, ::grpc::ServerAsyncResponseWriter< ::kvrf::AckResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Put<WithAsyncMethod_Get<WithAsyncMethod_Migrate<WithAsyncMethod_Ack<Service > > > > AsyncService;
   template <class BaseClass>
   class ExperimentalWithCallbackMethod_Put : public BaseClass {
    private:
@@ -299,11 +425,105 @@ class KvRaftServiceRpc final {
     #endif
       { return nullptr; }
   };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_Migrate : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_Migrate() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(2,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::kvrf::MigrationRequest, ::kvrf::MigrationResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::kvrf::MigrationRequest* request, ::kvrf::MigrationResponse* response) { return this->Migrate(context, request, response); }));}
+    void SetMessageAllocatorFor_Migrate(
+        ::grpc::experimental::MessageAllocator< ::kvrf::MigrationRequest, ::kvrf::MigrationResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(2);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::kvrf::MigrationRequest, ::kvrf::MigrationResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_Migrate() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Migrate(::grpc::ServerContext* /*context*/, const ::kvrf::MigrationRequest* /*request*/, ::kvrf::MigrationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* Migrate(
+      ::grpc::CallbackServerContext* /*context*/, const ::kvrf::MigrationRequest* /*request*/, ::kvrf::MigrationResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* Migrate(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::kvrf::MigrationRequest* /*request*/, ::kvrf::MigrationResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_Ack : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_Ack() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(3,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::kvrf::AckRequest, ::kvrf::AckResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::kvrf::AckRequest* request, ::kvrf::AckResponse* response) { return this->Ack(context, request, response); }));}
+    void SetMessageAllocatorFor_Ack(
+        ::grpc::experimental::MessageAllocator< ::kvrf::AckRequest, ::kvrf::AckResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(3);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::kvrf::AckRequest, ::kvrf::AckResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_Ack() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Ack(::grpc::ServerContext* /*context*/, const ::kvrf::AckRequest* /*request*/, ::kvrf::AckResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* Ack(
+      ::grpc::CallbackServerContext* /*context*/, const ::kvrf::AckRequest* /*request*/, ::kvrf::AckResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* Ack(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::kvrf::AckRequest* /*request*/, ::kvrf::AckResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
   #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-  typedef ExperimentalWithCallbackMethod_Put<ExperimentalWithCallbackMethod_Get<Service > > CallbackService;
+  typedef ExperimentalWithCallbackMethod_Put<ExperimentalWithCallbackMethod_Get<ExperimentalWithCallbackMethod_Migrate<ExperimentalWithCallbackMethod_Ack<Service > > > > CallbackService;
   #endif
 
-  typedef ExperimentalWithCallbackMethod_Put<ExperimentalWithCallbackMethod_Get<Service > > ExperimentalCallbackService;
+  typedef ExperimentalWithCallbackMethod_Put<ExperimentalWithCallbackMethod_Get<ExperimentalWithCallbackMethod_Migrate<ExperimentalWithCallbackMethod_Ack<Service > > > > ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_Put : public BaseClass {
    private:
@@ -334,6 +554,40 @@ class KvRaftServiceRpc final {
     }
     // disable synchronous version of this method
     ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::kvrf::GetRequest* /*request*/, ::kvrf::GetResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Migrate : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Migrate() {
+      ::grpc::Service::MarkMethodGeneric(2);
+    }
+    ~WithGenericMethod_Migrate() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Migrate(::grpc::ServerContext* /*context*/, const ::kvrf::MigrationRequest* /*request*/, ::kvrf::MigrationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Ack : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Ack() {
+      ::grpc::Service::MarkMethodGeneric(3);
+    }
+    ~WithGenericMethod_Ack() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Ack(::grpc::ServerContext* /*context*/, const ::kvrf::AckRequest* /*request*/, ::kvrf::AckResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -376,6 +630,46 @@ class KvRaftServiceRpc final {
     }
     void RequestGet(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Migrate : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Migrate() {
+      ::grpc::Service::MarkMethodRaw(2);
+    }
+    ~WithRawMethod_Migrate() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Migrate(::grpc::ServerContext* /*context*/, const ::kvrf::MigrationRequest* /*request*/, ::kvrf::MigrationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestMigrate(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Ack : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Ack() {
+      ::grpc::Service::MarkMethodRaw(3);
+    }
+    ~WithRawMethod_Ack() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Ack(::grpc::ServerContext* /*context*/, const ::kvrf::AckRequest* /*request*/, ::kvrf::AckResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestAck(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -455,6 +749,82 @@ class KvRaftServiceRpc final {
       { return nullptr; }
   };
   template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_Migrate : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_Migrate() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(2,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Migrate(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_Migrate() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Migrate(::grpc::ServerContext* /*context*/, const ::kvrf::MigrationRequest* /*request*/, ::kvrf::MigrationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* Migrate(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* Migrate(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_Ack : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_Ack() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(3,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Ack(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_Ack() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Ack(::grpc::ServerContext* /*context*/, const ::kvrf::AckRequest* /*request*/, ::kvrf::AckResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* Ack(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* Ack(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_Put : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -508,9 +878,63 @@ class KvRaftServiceRpc final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGet(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::kvrf::GetRequest,::kvrf::GetResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_Put<WithStreamedUnaryMethod_Get<Service > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Migrate : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Migrate() {
+      ::grpc::Service::MarkMethodStreamed(2,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::kvrf::MigrationRequest, ::kvrf::MigrationResponse>(
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
+                     ::kvrf::MigrationRequest, ::kvrf::MigrationResponse>* streamer) {
+                       return this->StreamedMigrate(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Migrate() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Migrate(::grpc::ServerContext* /*context*/, const ::kvrf::MigrationRequest* /*request*/, ::kvrf::MigrationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedMigrate(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::kvrf::MigrationRequest,::kvrf::MigrationResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Ack : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Ack() {
+      ::grpc::Service::MarkMethodStreamed(3,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::kvrf::AckRequest, ::kvrf::AckResponse>(
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
+                     ::kvrf::AckRequest, ::kvrf::AckResponse>* streamer) {
+                       return this->StreamedAck(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Ack() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Ack(::grpc::ServerContext* /*context*/, const ::kvrf::AckRequest* /*request*/, ::kvrf::AckResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedAck(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::kvrf::AckRequest,::kvrf::AckResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_Put<WithStreamedUnaryMethod_Get<WithStreamedUnaryMethod_Migrate<WithStreamedUnaryMethod_Ack<Service > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_Put<WithStreamedUnaryMethod_Get<Service > > StreamedService;
+  typedef WithStreamedUnaryMethod_Put<WithStreamedUnaryMethod_Get<WithStreamedUnaryMethod_Migrate<WithStreamedUnaryMethod_Ack<Service > > > > StreamedService;
 };
 
 }  // namespace kvrf

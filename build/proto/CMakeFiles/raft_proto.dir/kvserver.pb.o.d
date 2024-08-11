@@ -288,5 +288,8 @@ proto/CMakeFiles/raft_proto.dir/kvserver.pb.o: \
  /usr/local/include/google/protobuf/message.h \
  /usr/local/include/google/protobuf/extension_set.h \
  /usr/include/c++/11/cassert \
+ /usr/local/include/google/protobuf/map_entry.h \
  /usr/local/include/google/protobuf/reflection_ops.h \
+ /usr/local/include/google/protobuf/map_field_inl.h \
+ /usr/local/include/google/protobuf/map_field.h \
  /usr/local/include/google/protobuf/wire_format.h

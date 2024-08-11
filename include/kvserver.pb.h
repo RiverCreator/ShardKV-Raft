@@ -30,6 +30,9 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include <google/protobuf/map.h>  // IWYU pragma: export
+#include <google/protobuf/map_entry.h>
+#include <google/protobuf/map_field_inl.h>
 #include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
@@ -46,7 +49,7 @@ struct TableStruct_kvserver_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[6]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[12]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -54,12 +57,30 @@ struct TableStruct_kvserver_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_kvserver_2eproto;
 namespace kvrf {
+class AckRequest;
+class AckRequestDefaultTypeInternal;
+extern AckRequestDefaultTypeInternal _AckRequest_default_instance_;
+class AckResponse;
+class AckResponseDefaultTypeInternal;
+extern AckResponseDefaultTypeInternal _AckResponse_default_instance_;
 class GetRequest;
 class GetRequestDefaultTypeInternal;
 extern GetRequestDefaultTypeInternal _GetRequest_default_instance_;
 class GetResponse;
 class GetResponseDefaultTypeInternal;
 extern GetResponseDefaultTypeInternal _GetResponse_default_instance_;
+class MigrationRequest;
+class MigrationRequestDefaultTypeInternal;
+extern MigrationRequestDefaultTypeInternal _MigrationRequest_default_instance_;
+class MigrationResponse;
+class MigrationResponseDefaultTypeInternal;
+extern MigrationResponseDefaultTypeInternal _MigrationResponse_default_instance_;
+class MigrationResponse_ClientreqEntry_DoNotUse;
+class MigrationResponse_ClientreqEntry_DoNotUseDefaultTypeInternal;
+extern MigrationResponse_ClientreqEntry_DoNotUseDefaultTypeInternal _MigrationResponse_ClientreqEntry_DoNotUse_default_instance_;
+class MigrationResponse_DatabaseEntry_DoNotUse;
+class MigrationResponse_DatabaseEntry_DoNotUseDefaultTypeInternal;
+extern MigrationResponse_DatabaseEntry_DoNotUseDefaultTypeInternal _MigrationResponse_DatabaseEntry_DoNotUse_default_instance_;
 class PutRequest;
 class PutRequestDefaultTypeInternal;
 extern PutRequestDefaultTypeInternal _PutRequest_default_instance_;
@@ -74,8 +95,14 @@ class ResponseDefaultTypeInternal;
 extern ResponseDefaultTypeInternal _Response_default_instance_;
 }  // namespace kvrf
 PROTOBUF_NAMESPACE_OPEN
+template<> ::kvrf::AckRequest* Arena::CreateMaybeMessage<::kvrf::AckRequest>(Arena*);
+template<> ::kvrf::AckResponse* Arena::CreateMaybeMessage<::kvrf::AckResponse>(Arena*);
 template<> ::kvrf::GetRequest* Arena::CreateMaybeMessage<::kvrf::GetRequest>(Arena*);
 template<> ::kvrf::GetResponse* Arena::CreateMaybeMessage<::kvrf::GetResponse>(Arena*);
+template<> ::kvrf::MigrationRequest* Arena::CreateMaybeMessage<::kvrf::MigrationRequest>(Arena*);
+template<> ::kvrf::MigrationResponse* Arena::CreateMaybeMessage<::kvrf::MigrationResponse>(Arena*);
+template<> ::kvrf::MigrationResponse_ClientreqEntry_DoNotUse* Arena::CreateMaybeMessage<::kvrf::MigrationResponse_ClientreqEntry_DoNotUse>(Arena*);
+template<> ::kvrf::MigrationResponse_DatabaseEntry_DoNotUse* Arena::CreateMaybeMessage<::kvrf::MigrationResponse_DatabaseEntry_DoNotUse>(Arena*);
 template<> ::kvrf::PutRequest* Arena::CreateMaybeMessage<::kvrf::PutRequest>(Arena*);
 template<> ::kvrf::PutResponse* Arena::CreateMaybeMessage<::kvrf::PutResponse>(Arena*);
 template<> ::kvrf::Request* Arena::CreateMaybeMessage<::kvrf::Request>(Arena*);
@@ -398,9 +425,29 @@ class PutResponse PROTOBUF_FINAL :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kOKFieldNumber = 1,
+    kIsWrongGroupFieldNumber = 1,
+    kIsWrongLeaderFieldNumber = 2,
+    kOKFieldNumber = 3,
   };
-  // bool OK = 1;
+  // bool isWrongGroup = 1;
+  void clear_iswronggroup();
+  bool iswronggroup() const;
+  void set_iswronggroup(bool value);
+  private:
+  bool _internal_iswronggroup() const;
+  void _internal_set_iswronggroup(bool value);
+  public:
+
+  // bool isWrongLeader = 2;
+  void clear_iswrongleader();
+  bool iswrongleader() const;
+  void set_iswrongleader(bool value);
+  private:
+  bool _internal_iswrongleader() const;
+  void _internal_set_iswrongleader(bool value);
+  public:
+
+  // bool OK = 3;
   void clear_ok();
   bool ok() const;
   void set_ok(bool value);
@@ -416,6 +463,8 @@ class PutResponse PROTOBUF_FINAL :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  bool iswronggroup_;
+  bool iswrongleader_;
   bool ok_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_kvserver_2eproto;
@@ -699,10 +748,12 @@ class GetResponse PROTOBUF_FINAL :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kValueFieldNumber = 1,
-    kIsExistFieldNumber = 3,
+    kValueFieldNumber = 3,
+    kIsWrongGroupFieldNumber = 1,
+    kIsWrongLeaderFieldNumber = 2,
+    kIsExistFieldNumber = 4,
   };
-  // string value = 1;
+  // string value = 3;
   void clear_value();
   const std::string& value() const;
   void set_value(const std::string& value);
@@ -718,7 +769,25 @@ class GetResponse PROTOBUF_FINAL :
   std::string* _internal_mutable_value();
   public:
 
-  // bool isExist = 3;
+  // bool isWrongGroup = 1;
+  void clear_iswronggroup();
+  bool iswronggroup() const;
+  void set_iswronggroup(bool value);
+  private:
+  bool _internal_iswronggroup() const;
+  void _internal_set_iswronggroup(bool value);
+  public:
+
+  // bool isWrongLeader = 2;
+  void clear_iswrongleader();
+  bool iswrongleader() const;
+  void set_iswrongleader(bool value);
+  private:
+  bool _internal_iswrongleader() const;
+  void _internal_set_iswrongleader(bool value);
+  public:
+
+  // bool isExist = 4;
   void clear_isexist();
   bool isexist() const;
   void set_isexist(bool value);
@@ -735,6 +804,8 @@ class GetResponse PROTOBUF_FINAL :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr value_;
+  bool iswronggroup_;
+  bool iswrongleader_;
   bool isexist_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_kvserver_2eproto;
@@ -1072,6 +1143,724 @@ class Response PROTOBUF_FINAL :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_kvserver_2eproto;
 };
+// -------------------------------------------------------------------
+
+class MigrationRequest PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:kvrf.MigrationRequest) */ {
+ public:
+  inline MigrationRequest() : MigrationRequest(nullptr) {}
+  virtual ~MigrationRequest();
+
+  MigrationRequest(const MigrationRequest& from);
+  MigrationRequest(MigrationRequest&& from) noexcept
+    : MigrationRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline MigrationRequest& operator=(const MigrationRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MigrationRequest& operator=(MigrationRequest&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const MigrationRequest& default_instance();
+
+  static inline const MigrationRequest* internal_default_instance() {
+    return reinterpret_cast<const MigrationRequest*>(
+               &_MigrationRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    6;
+
+  friend void swap(MigrationRequest& a, MigrationRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MigrationRequest* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MigrationRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline MigrationRequest* New() const final {
+    return CreateMaybeMessage<MigrationRequest>(nullptr);
+  }
+
+  MigrationRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<MigrationRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const MigrationRequest& from);
+  void MergeFrom(const MigrationRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(MigrationRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "kvrf.MigrationRequest";
+  }
+  protected:
+  explicit MigrationRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_kvserver_2eproto);
+    return ::descriptor_table_kvserver_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kShardidFieldNumber = 1,
+    kConfigidFieldNumber = 2,
+  };
+  // int32 shardid = 1;
+  void clear_shardid();
+  ::PROTOBUF_NAMESPACE_ID::int32 shardid() const;
+  void set_shardid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_shardid() const;
+  void _internal_set_shardid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 configid = 2;
+  void clear_configid();
+  ::PROTOBUF_NAMESPACE_ID::int32 configid() const;
+  void set_configid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_configid() const;
+  void _internal_set_configid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:kvrf.MigrationRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::int32 shardid_;
+  ::PROTOBUF_NAMESPACE_ID::int32 configid_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_kvserver_2eproto;
+};
+// -------------------------------------------------------------------
+
+class MigrationResponse_DatabaseEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<MigrationResponse_DatabaseEntry_DoNotUse, 
+    std::string, std::string,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_BYTES> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<MigrationResponse_DatabaseEntry_DoNotUse, 
+    std::string, std::string,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_BYTES> SuperType;
+  MigrationResponse_DatabaseEntry_DoNotUse();
+  explicit MigrationResponse_DatabaseEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const MigrationResponse_DatabaseEntry_DoNotUse& other);
+  static const MigrationResponse_DatabaseEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const MigrationResponse_DatabaseEntry_DoNotUse*>(&_MigrationResponse_DatabaseEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "kvrf.MigrationResponse.DatabaseEntry.key");
+ }
+  static bool ValidateValue(void*) { return true; }
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& other) final;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_kvserver_2eproto);
+    return ::descriptor_table_kvserver_2eproto.file_level_metadata[7];
+  }
+
+  public:
+};
+
+// -------------------------------------------------------------------
+
+class MigrationResponse_ClientreqEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<MigrationResponse_ClientreqEntry_DoNotUse, 
+    ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::int32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<MigrationResponse_ClientreqEntry_DoNotUse, 
+    ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::int32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32> SuperType;
+  MigrationResponse_ClientreqEntry_DoNotUse();
+  explicit MigrationResponse_ClientreqEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const MigrationResponse_ClientreqEntry_DoNotUse& other);
+  static const MigrationResponse_ClientreqEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const MigrationResponse_ClientreqEntry_DoNotUse*>(&_MigrationResponse_ClientreqEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(void*) { return true; }
+  static bool ValidateValue(void*) { return true; }
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& other) final;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_kvserver_2eproto);
+    return ::descriptor_table_kvserver_2eproto.file_level_metadata[8];
+  }
+
+  public:
+};
+
+// -------------------------------------------------------------------
+
+class MigrationResponse PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:kvrf.MigrationResponse) */ {
+ public:
+  inline MigrationResponse() : MigrationResponse(nullptr) {}
+  virtual ~MigrationResponse();
+
+  MigrationResponse(const MigrationResponse& from);
+  MigrationResponse(MigrationResponse&& from) noexcept
+    : MigrationResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline MigrationResponse& operator=(const MigrationResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MigrationResponse& operator=(MigrationResponse&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const MigrationResponse& default_instance();
+
+  static inline const MigrationResponse* internal_default_instance() {
+    return reinterpret_cast<const MigrationResponse*>(
+               &_MigrationResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    9;
+
+  friend void swap(MigrationResponse& a, MigrationResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MigrationResponse* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MigrationResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline MigrationResponse* New() const final {
+    return CreateMaybeMessage<MigrationResponse>(nullptr);
+  }
+
+  MigrationResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<MigrationResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const MigrationResponse& from);
+  void MergeFrom(const MigrationResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(MigrationResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "kvrf.MigrationResponse";
+  }
+  protected:
+  explicit MigrationResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_kvserver_2eproto);
+    return ::descriptor_table_kvserver_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDatabaseFieldNumber = 4,
+    kClientreqFieldNumber = 5,
+    kErrFieldNumber = 1,
+    kShardidFieldNumber = 2,
+    kConfigidFieldNumber = 3,
+  };
+  // map<string, bytes> database = 4;
+  int database_size() const;
+  private:
+  int _internal_database_size() const;
+  public:
+  void clear_database();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+      _internal_database() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+      _internal_mutable_database();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+      database() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+      mutable_database();
+
+  // map<int32, int32> clientreq = 5;
+  int clientreq_size() const;
+  private:
+  int _internal_clientreq_size() const;
+  public:
+  void clear_clientreq();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::int32 >&
+      _internal_clientreq() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::int32 >*
+      _internal_mutable_clientreq();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::int32 >&
+      clientreq() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::int32 >*
+      mutable_clientreq();
+
+  // bytes err = 1;
+  void clear_err();
+  const std::string& err() const;
+  void set_err(const std::string& value);
+  void set_err(std::string&& value);
+  void set_err(const char* value);
+  void set_err(const void* value, size_t size);
+  std::string* mutable_err();
+  std::string* release_err();
+  void set_allocated_err(std::string* err);
+  private:
+  const std::string& _internal_err() const;
+  void _internal_set_err(const std::string& value);
+  std::string* _internal_mutable_err();
+  public:
+
+  // int32 shardid = 2;
+  void clear_shardid();
+  ::PROTOBUF_NAMESPACE_ID::int32 shardid() const;
+  void set_shardid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_shardid() const;
+  void _internal_set_shardid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 configid = 3;
+  void clear_configid();
+  ::PROTOBUF_NAMESPACE_ID::int32 configid() const;
+  void set_configid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_configid() const;
+  void _internal_set_configid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:kvrf.MigrationResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      MigrationResponse_DatabaseEntry_DoNotUse,
+      std::string, std::string,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_BYTES> database_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      MigrationResponse_ClientreqEntry_DoNotUse,
+      ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::int32,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32> clientreq_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr err_;
+  ::PROTOBUF_NAMESPACE_ID::int32 shardid_;
+  ::PROTOBUF_NAMESPACE_ID::int32 configid_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_kvserver_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AckRequest PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:kvrf.AckRequest) */ {
+ public:
+  inline AckRequest() : AckRequest(nullptr) {}
+  virtual ~AckRequest();
+
+  AckRequest(const AckRequest& from);
+  AckRequest(AckRequest&& from) noexcept
+    : AckRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline AckRequest& operator=(const AckRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AckRequest& operator=(AckRequest&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const AckRequest& default_instance();
+
+  static inline const AckRequest* internal_default_instance() {
+    return reinterpret_cast<const AckRequest*>(
+               &_AckRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    10;
+
+  friend void swap(AckRequest& a, AckRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AckRequest* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AckRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline AckRequest* New() const final {
+    return CreateMaybeMessage<AckRequest>(nullptr);
+  }
+
+  AckRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<AckRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const AckRequest& from);
+  void MergeFrom(const AckRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AckRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "kvrf.AckRequest";
+  }
+  protected:
+  explicit AckRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_kvserver_2eproto);
+    return ::descriptor_table_kvserver_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kConfigidFieldNumber = 1,
+    kShardidFieldNumber = 2,
+  };
+  // int32 configid = 1;
+  void clear_configid();
+  ::PROTOBUF_NAMESPACE_ID::int32 configid() const;
+  void set_configid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_configid() const;
+  void _internal_set_configid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 shardid = 2;
+  void clear_shardid();
+  ::PROTOBUF_NAMESPACE_ID::int32 shardid() const;
+  void set_shardid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_shardid() const;
+  void _internal_set_shardid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:kvrf.AckRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::int32 configid_;
+  ::PROTOBUF_NAMESPACE_ID::int32 shardid_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_kvserver_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AckResponse PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:kvrf.AckResponse) */ {
+ public:
+  inline AckResponse() : AckResponse(nullptr) {}
+  virtual ~AckResponse();
+
+  AckResponse(const AckResponse& from);
+  AckResponse(AckResponse&& from) noexcept
+    : AckResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline AckResponse& operator=(const AckResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AckResponse& operator=(AckResponse&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const AckResponse& default_instance();
+
+  static inline const AckResponse* internal_default_instance() {
+    return reinterpret_cast<const AckResponse*>(
+               &_AckResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    11;
+
+  friend void swap(AckResponse& a, AckResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AckResponse* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AckResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline AckResponse* New() const final {
+    return CreateMaybeMessage<AckResponse>(nullptr);
+  }
+
+  AckResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<AckResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const AckResponse& from);
+  void MergeFrom(const AckResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AckResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "kvrf.AckResponse";
+  }
+  protected:
+  explicit AckResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_kvserver_2eproto);
+    return ::descriptor_table_kvserver_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kErrorFieldNumber = 2,
+    kReceivedFieldNumber = 1,
+  };
+  // bytes error = 2;
+  void clear_error();
+  const std::string& error() const;
+  void set_error(const std::string& value);
+  void set_error(std::string&& value);
+  void set_error(const char* value);
+  void set_error(const void* value, size_t size);
+  std::string* mutable_error();
+  std::string* release_error();
+  void set_allocated_error(std::string* error);
+  private:
+  const std::string& _internal_error() const;
+  void _internal_set_error(const std::string& value);
+  std::string* _internal_mutable_error();
+  public:
+
+  // bool received = 1;
+  void clear_received();
+  bool received() const;
+  void set_received(bool value);
+  private:
+  bool _internal_received() const;
+  void _internal_set_received(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:kvrf.AckResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr error_;
+  bool received_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_kvserver_2eproto;
+};
 // ===================================================================
 
 
@@ -1310,7 +2099,47 @@ inline void PutRequest::set_requestid(::PROTOBUF_NAMESPACE_ID::int32 value) {
 
 // PutResponse
 
-// bool OK = 1;
+// bool isWrongGroup = 1;
+inline void PutResponse::clear_iswronggroup() {
+  iswronggroup_ = false;
+}
+inline bool PutResponse::_internal_iswronggroup() const {
+  return iswronggroup_;
+}
+inline bool PutResponse::iswronggroup() const {
+  // @@protoc_insertion_point(field_get:kvrf.PutResponse.isWrongGroup)
+  return _internal_iswronggroup();
+}
+inline void PutResponse::_internal_set_iswronggroup(bool value) {
+  
+  iswronggroup_ = value;
+}
+inline void PutResponse::set_iswronggroup(bool value) {
+  _internal_set_iswronggroup(value);
+  // @@protoc_insertion_point(field_set:kvrf.PutResponse.isWrongGroup)
+}
+
+// bool isWrongLeader = 2;
+inline void PutResponse::clear_iswrongleader() {
+  iswrongleader_ = false;
+}
+inline bool PutResponse::_internal_iswrongleader() const {
+  return iswrongleader_;
+}
+inline bool PutResponse::iswrongleader() const {
+  // @@protoc_insertion_point(field_get:kvrf.PutResponse.isWrongLeader)
+  return _internal_iswrongleader();
+}
+inline void PutResponse::_internal_set_iswrongleader(bool value) {
+  
+  iswrongleader_ = value;
+}
+inline void PutResponse::set_iswrongleader(bool value) {
+  _internal_set_iswrongleader(value);
+  // @@protoc_insertion_point(field_set:kvrf.PutResponse.isWrongLeader)
+}
+
+// bool OK = 3;
 inline void PutResponse::clear_ok() {
   ok_ = false;
 }
@@ -1439,7 +2268,47 @@ inline void GetRequest::set_requestid(::PROTOBUF_NAMESPACE_ID::int32 value) {
 
 // GetResponse
 
-// string value = 1;
+// bool isWrongGroup = 1;
+inline void GetResponse::clear_iswronggroup() {
+  iswronggroup_ = false;
+}
+inline bool GetResponse::_internal_iswronggroup() const {
+  return iswronggroup_;
+}
+inline bool GetResponse::iswronggroup() const {
+  // @@protoc_insertion_point(field_get:kvrf.GetResponse.isWrongGroup)
+  return _internal_iswronggroup();
+}
+inline void GetResponse::_internal_set_iswronggroup(bool value) {
+  
+  iswronggroup_ = value;
+}
+inline void GetResponse::set_iswronggroup(bool value) {
+  _internal_set_iswronggroup(value);
+  // @@protoc_insertion_point(field_set:kvrf.GetResponse.isWrongGroup)
+}
+
+// bool isWrongLeader = 2;
+inline void GetResponse::clear_iswrongleader() {
+  iswrongleader_ = false;
+}
+inline bool GetResponse::_internal_iswrongleader() const {
+  return iswrongleader_;
+}
+inline bool GetResponse::iswrongleader() const {
+  // @@protoc_insertion_point(field_get:kvrf.GetResponse.isWrongLeader)
+  return _internal_iswrongleader();
+}
+inline void GetResponse::_internal_set_iswrongleader(bool value) {
+  
+  iswrongleader_ = value;
+}
+inline void GetResponse::set_iswrongleader(bool value) {
+  _internal_set_iswrongleader(value);
+  // @@protoc_insertion_point(field_set:kvrf.GetResponse.isWrongLeader)
+}
+
+// string value = 3;
 inline void GetResponse::clear_value() {
   value_.ClearToEmpty();
 }
@@ -1500,7 +2369,7 @@ inline void GetResponse::set_allocated_value(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:kvrf.GetResponse.value)
 }
 
-// bool isExist = 3;
+// bool isExist = 4;
 inline void GetResponse::clear_isexist() {
   isexist_ = false;
 }
@@ -1792,9 +2661,361 @@ inline void Response::set_allocated_response_msg(std::string* response_msg) {
   // @@protoc_insertion_point(field_set_allocated:kvrf.Response.response_msg)
 }
 
+// -------------------------------------------------------------------
+
+// MigrationRequest
+
+// int32 shardid = 1;
+inline void MigrationRequest::clear_shardid() {
+  shardid_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 MigrationRequest::_internal_shardid() const {
+  return shardid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 MigrationRequest::shardid() const {
+  // @@protoc_insertion_point(field_get:kvrf.MigrationRequest.shardid)
+  return _internal_shardid();
+}
+inline void MigrationRequest::_internal_set_shardid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  shardid_ = value;
+}
+inline void MigrationRequest::set_shardid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_shardid(value);
+  // @@protoc_insertion_point(field_set:kvrf.MigrationRequest.shardid)
+}
+
+// int32 configid = 2;
+inline void MigrationRequest::clear_configid() {
+  configid_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 MigrationRequest::_internal_configid() const {
+  return configid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 MigrationRequest::configid() const {
+  // @@protoc_insertion_point(field_get:kvrf.MigrationRequest.configid)
+  return _internal_configid();
+}
+inline void MigrationRequest::_internal_set_configid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  configid_ = value;
+}
+inline void MigrationRequest::set_configid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_configid(value);
+  // @@protoc_insertion_point(field_set:kvrf.MigrationRequest.configid)
+}
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// MigrationResponse
+
+// bytes err = 1;
+inline void MigrationResponse::clear_err() {
+  err_.ClearToEmpty();
+}
+inline const std::string& MigrationResponse::err() const {
+  // @@protoc_insertion_point(field_get:kvrf.MigrationResponse.err)
+  return _internal_err();
+}
+inline void MigrationResponse::set_err(const std::string& value) {
+  _internal_set_err(value);
+  // @@protoc_insertion_point(field_set:kvrf.MigrationResponse.err)
+}
+inline std::string* MigrationResponse::mutable_err() {
+  // @@protoc_insertion_point(field_mutable:kvrf.MigrationResponse.err)
+  return _internal_mutable_err();
+}
+inline const std::string& MigrationResponse::_internal_err() const {
+  return err_.Get();
+}
+inline void MigrationResponse::_internal_set_err(const std::string& value) {
+  
+  err_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void MigrationResponse::set_err(std::string&& value) {
+  
+  err_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:kvrf.MigrationResponse.err)
+}
+inline void MigrationResponse::set_err(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  err_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:kvrf.MigrationResponse.err)
+}
+inline void MigrationResponse::set_err(const void* value,
+    size_t size) {
+  
+  err_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:kvrf.MigrationResponse.err)
+}
+inline std::string* MigrationResponse::_internal_mutable_err() {
+  
+  return err_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* MigrationResponse::release_err() {
+  // @@protoc_insertion_point(field_release:kvrf.MigrationResponse.err)
+  return err_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void MigrationResponse::set_allocated_err(std::string* err) {
+  if (err != nullptr) {
+    
+  } else {
+    
+  }
+  err_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), err,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:kvrf.MigrationResponse.err)
+}
+
+// int32 shardid = 2;
+inline void MigrationResponse::clear_shardid() {
+  shardid_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 MigrationResponse::_internal_shardid() const {
+  return shardid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 MigrationResponse::shardid() const {
+  // @@protoc_insertion_point(field_get:kvrf.MigrationResponse.shardid)
+  return _internal_shardid();
+}
+inline void MigrationResponse::_internal_set_shardid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  shardid_ = value;
+}
+inline void MigrationResponse::set_shardid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_shardid(value);
+  // @@protoc_insertion_point(field_set:kvrf.MigrationResponse.shardid)
+}
+
+// int32 configid = 3;
+inline void MigrationResponse::clear_configid() {
+  configid_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 MigrationResponse::_internal_configid() const {
+  return configid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 MigrationResponse::configid() const {
+  // @@protoc_insertion_point(field_get:kvrf.MigrationResponse.configid)
+  return _internal_configid();
+}
+inline void MigrationResponse::_internal_set_configid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  configid_ = value;
+}
+inline void MigrationResponse::set_configid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_configid(value);
+  // @@protoc_insertion_point(field_set:kvrf.MigrationResponse.configid)
+}
+
+// map<string, bytes> database = 4;
+inline int MigrationResponse::_internal_database_size() const {
+  return database_.size();
+}
+inline int MigrationResponse::database_size() const {
+  return _internal_database_size();
+}
+inline void MigrationResponse::clear_database() {
+  database_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+MigrationResponse::_internal_database() const {
+  return database_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+MigrationResponse::database() const {
+  // @@protoc_insertion_point(field_map:kvrf.MigrationResponse.database)
+  return _internal_database();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+MigrationResponse::_internal_mutable_database() {
+  return database_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+MigrationResponse::mutable_database() {
+  // @@protoc_insertion_point(field_mutable_map:kvrf.MigrationResponse.database)
+  return _internal_mutable_database();
+}
+
+// map<int32, int32> clientreq = 5;
+inline int MigrationResponse::_internal_clientreq_size() const {
+  return clientreq_.size();
+}
+inline int MigrationResponse::clientreq_size() const {
+  return _internal_clientreq_size();
+}
+inline void MigrationResponse::clear_clientreq() {
+  clientreq_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::int32 >&
+MigrationResponse::_internal_clientreq() const {
+  return clientreq_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::int32 >&
+MigrationResponse::clientreq() const {
+  // @@protoc_insertion_point(field_map:kvrf.MigrationResponse.clientreq)
+  return _internal_clientreq();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::int32 >*
+MigrationResponse::_internal_mutable_clientreq() {
+  return clientreq_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::int32 >*
+MigrationResponse::mutable_clientreq() {
+  // @@protoc_insertion_point(field_mutable_map:kvrf.MigrationResponse.clientreq)
+  return _internal_mutable_clientreq();
+}
+
+// -------------------------------------------------------------------
+
+// AckRequest
+
+// int32 configid = 1;
+inline void AckRequest::clear_configid() {
+  configid_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 AckRequest::_internal_configid() const {
+  return configid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 AckRequest::configid() const {
+  // @@protoc_insertion_point(field_get:kvrf.AckRequest.configid)
+  return _internal_configid();
+}
+inline void AckRequest::_internal_set_configid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  configid_ = value;
+}
+inline void AckRequest::set_configid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_configid(value);
+  // @@protoc_insertion_point(field_set:kvrf.AckRequest.configid)
+}
+
+// int32 shardid = 2;
+inline void AckRequest::clear_shardid() {
+  shardid_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 AckRequest::_internal_shardid() const {
+  return shardid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 AckRequest::shardid() const {
+  // @@protoc_insertion_point(field_get:kvrf.AckRequest.shardid)
+  return _internal_shardid();
+}
+inline void AckRequest::_internal_set_shardid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  shardid_ = value;
+}
+inline void AckRequest::set_shardid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_shardid(value);
+  // @@protoc_insertion_point(field_set:kvrf.AckRequest.shardid)
+}
+
+// -------------------------------------------------------------------
+
+// AckResponse
+
+// bool received = 1;
+inline void AckResponse::clear_received() {
+  received_ = false;
+}
+inline bool AckResponse::_internal_received() const {
+  return received_;
+}
+inline bool AckResponse::received() const {
+  // @@protoc_insertion_point(field_get:kvrf.AckResponse.received)
+  return _internal_received();
+}
+inline void AckResponse::_internal_set_received(bool value) {
+  
+  received_ = value;
+}
+inline void AckResponse::set_received(bool value) {
+  _internal_set_received(value);
+  // @@protoc_insertion_point(field_set:kvrf.AckResponse.received)
+}
+
+// bytes error = 2;
+inline void AckResponse::clear_error() {
+  error_.ClearToEmpty();
+}
+inline const std::string& AckResponse::error() const {
+  // @@protoc_insertion_point(field_get:kvrf.AckResponse.error)
+  return _internal_error();
+}
+inline void AckResponse::set_error(const std::string& value) {
+  _internal_set_error(value);
+  // @@protoc_insertion_point(field_set:kvrf.AckResponse.error)
+}
+inline std::string* AckResponse::mutable_error() {
+  // @@protoc_insertion_point(field_mutable:kvrf.AckResponse.error)
+  return _internal_mutable_error();
+}
+inline const std::string& AckResponse::_internal_error() const {
+  return error_.Get();
+}
+inline void AckResponse::_internal_set_error(const std::string& value) {
+  
+  error_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void AckResponse::set_error(std::string&& value) {
+  
+  error_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:kvrf.AckResponse.error)
+}
+inline void AckResponse::set_error(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  error_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:kvrf.AckResponse.error)
+}
+inline void AckResponse::set_error(const void* value,
+    size_t size) {
+  
+  error_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:kvrf.AckResponse.error)
+}
+inline std::string* AckResponse::_internal_mutable_error() {
+  
+  return error_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* AckResponse::release_error() {
+  // @@protoc_insertion_point(field_release:kvrf.AckResponse.error)
+  return error_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void AckResponse::set_allocated_error(std::string* error) {
+  if (error != nullptr) {
+    
+  } else {
+    
+  }
+  error_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), error,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:kvrf.AckResponse.error)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

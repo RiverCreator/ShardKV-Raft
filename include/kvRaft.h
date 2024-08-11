@@ -15,32 +15,7 @@
 4、实现put和get的逻辑，put的时候需要将日志发送到raft层（raft.start函数），get则是直接返回客户端对应的value
 */
 class KVServer;
-namespace state{
-    typedef char state;
-    char KEY_WRONG = 0x01;
-    char SYN_WRONG = 0x02;
-    char LEADER_WRONG = 0x04;
-};
 //存储raft所有节点的ip和port
-class KVServerInfo{
-public:
-    PeersInfo peersInfo; //Raft层的ip和port
-    std::string kv_ip; 
-    int kv_port;
-};
-//保存客户端RPC调用时请求的上下文信息
-class OpContext{
-public:
-    OpContext(Operation& op);
-    std::condition_variable cond_; //条件变量用来applyloop中来通知对应的get和put线程来表示日志写入成功可以返回给客户端
-    std::mutex mtx_;
-    Operation op;
-    //bool isWrongLeader; //表示是否是错误的leader
-    bool isIgnored; //维护幂等性，客户端可能会重复发送消息过来，如果发现重复发送一样的requestId，则忽略，并返回给客户端
-    enum OP_STATE  {OK = 0, NOT_READY};
-    OP_STATE ready; //如果get操作 是OK的话则op中的value即是返回的value
-    state::state state; //记录错误信息
-};
 
 class KVServer{
 public:

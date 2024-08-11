@@ -13,6 +13,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.22.1/CMakeSystem.cmake"
   "../proto/CMakeLists.txt"
   "../src/CMakeLists.txt"
+  "../src/shardkv/CMakeLists.txt"
   "/usr/lib/x86_64-linux-gnu/cmake/c-ares/c-ares-config.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/c-ares/c-ares-targets-noconfig.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/c-ares/c-ares-targets.cmake"
@@ -71,11 +72,14 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   "proto/CMakeFiles/CMakeDirectoryInformation.cmake"
   "src/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "src/shardkv/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "proto/CMakeFiles/raft_proto.dir/DependInfo.cmake"
-  "src/CMakeFiles/raft.dir/DependInfo.cmake"
-  "src/CMakeFiles/cli.dir/DependInfo.cmake"
+  "src/shardkv/CMakeFiles/shardserver.dir/DependInfo.cmake"
+  "src/shardkv/CMakeFiles/shardclient.dir/DependInfo.cmake"
+  "src/shardkv/CMakeFiles/master.dir/DependInfo.cmake"
+  "src/shardkv/CMakeFiles/clerk.dir/DependInfo.cmake"
   )

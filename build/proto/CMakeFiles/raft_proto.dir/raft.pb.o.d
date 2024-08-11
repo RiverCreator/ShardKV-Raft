@@ -292,4 +292,5 @@ proto/CMakeFiles/raft_proto.dir/raft.pb.o: \
  /usr/local/include/google/protobuf/reflection_ops.h \
  /usr/local/include/google/protobuf/map_field_inl.h \
  /usr/local/include/google/protobuf/map_field.h \
+ /home/river/work/Raft/Raft_LAB3/build/proto/shardkv.pb.h \
  /usr/local/include/google/protobuf/wire_format.h

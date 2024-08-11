@@ -1,6 +1,6 @@
 syntax = "proto3";
 package rf;
-
+import "shardkv.proto";
 //用来当做复制日志 同时也当做心跳
 message AppendEntriesRequest {
     int32 m_term = 1; //leader任期
@@ -46,9 +46,26 @@ message SnapShot{
     bytes data = 3; //数据块，从偏移量开始存储
 }
 
+message ShardData{
+    map<string,string> data = 1;
+}
+
+message ShardsData{
+    map<int32,ShardData> data = 1; //key为shardid value为data
+}
+
+message UnAckShards{
+    repeated int32 data = 1;
+}
+
 message SnapShotInfo{
     map<string,string> data = 1;
     map<int32,int32> clientseq = 2; 
+    map<int32,int32> comeinshards = 3; //记录要pull的shards key为shardid value为cfgid
+    map<int32,ShardsData> outshards = 4; //要发送出去的shard缓存，key为cfgid value为对应的shard和data
+    repeated int32 avalishards = 5; //存储当前主机拥有的shard
+    map<int32,UnAckShards> unacked = 6; //为发送ack的shard集合 key为cfgid value为shard集合
+    shardkv.Config config = 7; //当前配置
 }
 
 message InstallSnapShotResponse{

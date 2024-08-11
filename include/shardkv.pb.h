@@ -49,7 +49,7 @@ struct TableStruct_shardkv_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[12]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[14]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -57,6 +57,12 @@ struct TableStruct_shardkv_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_shardkv_2eproto;
 namespace shardkv {
+class Config;
+class ConfigDefaultTypeInternal;
+extern ConfigDefaultTypeInternal _Config_default_instance_;
+class Config_GroupsEntry_DoNotUse;
+class Config_GroupsEntry_DoNotUseDefaultTypeInternal;
+extern Config_GroupsEntry_DoNotUseDefaultTypeInternal _Config_GroupsEntry_DoNotUse_default_instance_;
 class GroupConfig;
 class GroupConfigDefaultTypeInternal;
 extern GroupConfigDefaultTypeInternal _GroupConfig_default_instance_;
@@ -95,6 +101,8 @@ class QueryResponse_GroupsEntry_DoNotUseDefaultTypeInternal;
 extern QueryResponse_GroupsEntry_DoNotUseDefaultTypeInternal _QueryResponse_GroupsEntry_DoNotUse_default_instance_;
 }  // namespace shardkv
 PROTOBUF_NAMESPACE_OPEN
+template<> ::shardkv::Config* Arena::CreateMaybeMessage<::shardkv::Config>(Arena*);
+template<> ::shardkv::Config_GroupsEntry_DoNotUse* Arena::CreateMaybeMessage<::shardkv::Config_GroupsEntry_DoNotUse>(Arena*);
 template<> ::shardkv::GroupConfig* Arena::CreateMaybeMessage<::shardkv::GroupConfig>(Arena*);
 template<> ::shardkv::JoinConfigs* Arena::CreateMaybeMessage<::shardkv::JoinConfigs>(Arena*);
 template<> ::shardkv::JoinRequest* Arena::CreateMaybeMessage<::shardkv::JoinRequest>(Arena*);
@@ -1128,6 +1136,219 @@ class QueryResponse PROTOBUF_FINAL :
 };
 // -------------------------------------------------------------------
 
+class Config_GroupsEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<Config_GroupsEntry_DoNotUse, 
+    ::PROTOBUF_NAMESPACE_ID::int32, ::shardkv::JoinConfigs,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<Config_GroupsEntry_DoNotUse, 
+    ::PROTOBUF_NAMESPACE_ID::int32, ::shardkv::JoinConfigs,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
+  Config_GroupsEntry_DoNotUse();
+  explicit Config_GroupsEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const Config_GroupsEntry_DoNotUse& other);
+  static const Config_GroupsEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const Config_GroupsEntry_DoNotUse*>(&_Config_GroupsEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(void*) { return true; }
+  static bool ValidateValue(void*) { return true; }
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& other) final;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_shardkv_2eproto);
+    return ::descriptor_table_shardkv_2eproto.file_level_metadata[8];
+  }
+
+  public:
+};
+
+// -------------------------------------------------------------------
+
+class Config PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:shardkv.Config) */ {
+ public:
+  inline Config() : Config(nullptr) {}
+  virtual ~Config();
+
+  Config(const Config& from);
+  Config(Config&& from) noexcept
+    : Config() {
+    *this = ::std::move(from);
+  }
+
+  inline Config& operator=(const Config& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Config& operator=(Config&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const Config& default_instance();
+
+  static inline const Config* internal_default_instance() {
+    return reinterpret_cast<const Config*>(
+               &_Config_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    9;
+
+  friend void swap(Config& a, Config& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Config* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Config* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Config* New() const final {
+    return CreateMaybeMessage<Config>(nullptr);
+  }
+
+  Config* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<Config>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const Config& from);
+  void MergeFrom(const Config& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Config* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "shardkv.Config";
+  }
+  protected:
+  explicit Config(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_shardkv_2eproto);
+    return ::descriptor_table_shardkv_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kShardsFieldNumber = 2,
+    kGroupsFieldNumber = 3,
+    kConfignumFieldNumber = 1,
+  };
+  // repeated int32 shards = 2;
+  int shards_size() const;
+  private:
+  int _internal_shards_size() const;
+  public:
+  void clear_shards();
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_shards(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >&
+      _internal_shards() const;
+  void _internal_add_shards(::PROTOBUF_NAMESPACE_ID::int32 value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
+      _internal_mutable_shards();
+  public:
+  ::PROTOBUF_NAMESPACE_ID::int32 shards(int index) const;
+  void set_shards(int index, ::PROTOBUF_NAMESPACE_ID::int32 value);
+  void add_shards(::PROTOBUF_NAMESPACE_ID::int32 value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >&
+      shards() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
+      mutable_shards();
+
+  // map<int32, .shardkv.JoinConfigs> groups = 3;
+  int groups_size() const;
+  private:
+  int _internal_groups_size() const;
+  public:
+  void clear_groups();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::shardkv::JoinConfigs >&
+      _internal_groups() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::shardkv::JoinConfigs >*
+      _internal_mutable_groups();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::shardkv::JoinConfigs >&
+      groups() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::shardkv::JoinConfigs >*
+      mutable_groups();
+
+  // int32 confignum = 1;
+  void clear_confignum();
+  ::PROTOBUF_NAMESPACE_ID::int32 confignum() const;
+  void set_confignum(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_confignum() const;
+  void _internal_set_confignum(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:shardkv.Config)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 > shards_;
+  mutable std::atomic<int> _shards_cached_byte_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      Config_GroupsEntry_DoNotUse,
+      ::PROTOBUF_NAMESPACE_ID::int32, ::shardkv::JoinConfigs,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> groups_;
+  ::PROTOBUF_NAMESPACE_ID::int32 confignum_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_shardkv_2eproto;
+};
+// -------------------------------------------------------------------
+
 class LeaveRequest PROTOBUF_FINAL :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:shardkv.LeaveRequest) */ {
  public:
@@ -1169,7 +1390,7 @@ class LeaveRequest PROTOBUF_FINAL :
                &_LeaveRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    10;
 
   friend void swap(LeaveRequest& a, LeaveRequest& b) {
     a.Swap(&b);
@@ -1341,7 +1562,7 @@ class LeaveResponse PROTOBUF_FINAL :
                &_LeaveResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    11;
 
   friend void swap(LeaveResponse& a, LeaveResponse& b) {
     a.Swap(&b);
@@ -1477,7 +1698,7 @@ class MoveRequest PROTOBUF_FINAL :
                &_MoveRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    12;
 
   friend void swap(MoveRequest& a, MoveRequest& b) {
     a.Swap(&b);
@@ -1646,7 +1867,7 @@ class MoveResponse PROTOBUF_FINAL :
                &_MoveResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    13;
 
   friend void swap(MoveResponse& a, MoveResponse& b) {
     a.Swap(&b);
@@ -2161,6 +2382,108 @@ inline void QueryResponse::set_iswrongleader(bool value) {
 
 // -------------------------------------------------------------------
 
+// -------------------------------------------------------------------
+
+// Config
+
+// int32 confignum = 1;
+inline void Config::clear_confignum() {
+  confignum_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Config::_internal_confignum() const {
+  return confignum_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Config::confignum() const {
+  // @@protoc_insertion_point(field_get:shardkv.Config.confignum)
+  return _internal_confignum();
+}
+inline void Config::_internal_set_confignum(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  confignum_ = value;
+}
+inline void Config::set_confignum(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_confignum(value);
+  // @@protoc_insertion_point(field_set:shardkv.Config.confignum)
+}
+
+// repeated int32 shards = 2;
+inline int Config::_internal_shards_size() const {
+  return shards_.size();
+}
+inline int Config::shards_size() const {
+  return _internal_shards_size();
+}
+inline void Config::clear_shards() {
+  shards_.Clear();
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Config::_internal_shards(int index) const {
+  return shards_.Get(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Config::shards(int index) const {
+  // @@protoc_insertion_point(field_get:shardkv.Config.shards)
+  return _internal_shards(index);
+}
+inline void Config::set_shards(int index, ::PROTOBUF_NAMESPACE_ID::int32 value) {
+  shards_.Set(index, value);
+  // @@protoc_insertion_point(field_set:shardkv.Config.shards)
+}
+inline void Config::_internal_add_shards(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  shards_.Add(value);
+}
+inline void Config::add_shards(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_add_shards(value);
+  // @@protoc_insertion_point(field_add:shardkv.Config.shards)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >&
+Config::_internal_shards() const {
+  return shards_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >&
+Config::shards() const {
+  // @@protoc_insertion_point(field_list:shardkv.Config.shards)
+  return _internal_shards();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
+Config::_internal_mutable_shards() {
+  return &shards_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
+Config::mutable_shards() {
+  // @@protoc_insertion_point(field_mutable_list:shardkv.Config.shards)
+  return _internal_mutable_shards();
+}
+
+// map<int32, .shardkv.JoinConfigs> groups = 3;
+inline int Config::_internal_groups_size() const {
+  return groups_.size();
+}
+inline int Config::groups_size() const {
+  return _internal_groups_size();
+}
+inline void Config::clear_groups() {
+  groups_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::shardkv::JoinConfigs >&
+Config::_internal_groups() const {
+  return groups_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::shardkv::JoinConfigs >&
+Config::groups() const {
+  // @@protoc_insertion_point(field_map:shardkv.Config.groups)
+  return _internal_groups();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::shardkv::JoinConfigs >*
+Config::_internal_mutable_groups() {
+  return groups_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::shardkv::JoinConfigs >*
+Config::mutable_groups() {
+  // @@protoc_insertion_point(field_mutable_map:shardkv.Config.groups)
+  return _internal_mutable_groups();
+}
+
+// -------------------------------------------------------------------
+
 // LeaveRequest
 
 // repeated int32 groupIds = 1;
@@ -2385,6 +2708,10 @@ inline void MoveResponse::set_iswrongleader(bool value) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

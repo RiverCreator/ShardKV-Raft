@@ -8,7 +8,7 @@ message JoinConfigs{
     repeated GroupConfig config = 1;
 }
 message JoinRequest{
-    map<int32,JoinConfigs> groups = 1;
+    map<int32,JoinConfigs> groups = 1; //gid与对应的集群主机的信息
     int32 requestId = 2;
     int32 clientId = 3;
 }
@@ -28,6 +28,12 @@ message QueryResponse{
     repeated int32 shards = 2;
     map<int32,JoinConfigs> groups = 3;
     bool isWrongLeader = 4;
+}
+
+message Config{
+    int32 confignum = 1;
+    repeated int32 shards = 2;
+    map<int32,JoinConfigs> groups = 3;
 }
 
 message LeaveRequest{

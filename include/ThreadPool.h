@@ -20,6 +20,7 @@ public:
         }
         cond_.notify_one();
     }
+    ThreadPool_(ThreadPool_&& t);
     ~ThreadPool_();
 private:
     std::vector<std::thread> threads_;

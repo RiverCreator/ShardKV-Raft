@@ -3,7 +3,11 @@
 /home/river/work/Raft/Raft_LAB3/build/proto/CMakeFiles/raft_proto.dir
 /home/river/work/Raft/Raft_LAB3/build/proto/CMakeFiles/edit_cache.dir
 /home/river/work/Raft/Raft_LAB3/build/proto/CMakeFiles/rebuild_cache.dir
-/home/river/work/Raft/Raft_LAB3/build/src/CMakeFiles/raft.dir
-/home/river/work/Raft/Raft_LAB3/build/src/CMakeFiles/cli.dir
 /home/river/work/Raft/Raft_LAB3/build/src/CMakeFiles/edit_cache.dir
 /home/river/work/Raft/Raft_LAB3/build/src/CMakeFiles/rebuild_cache.dir
+/home/river/work/Raft/Raft_LAB3/build/src/shardkv/CMakeFiles/shardserver.dir
+/home/river/work/Raft/Raft_LAB3/build/src/shardkv/CMakeFiles/shardclient.dir
+/home/river/work/Raft/Raft_LAB3/build/src/shardkv/CMakeFiles/master.dir
+/home/river/work/Raft/Raft_LAB3/build/src/shardkv/CMakeFiles/clerk.dir
+/home/river/work/Raft/Raft_LAB3/build/src/shardkv/CMakeFiles/edit_cache.dir
+/home/river/work/Raft/Raft_LAB3/build/src/shardkv/CMakeFiles/rebuild_cache.dir

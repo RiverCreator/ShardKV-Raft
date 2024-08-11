@@ -302,17 +302,17 @@ protobuf_MODULE_COMPATIBLE:BOOL=OFF
 //Enable for verbose output
 protobuf_VERBOSE:BOOL=OFF
 
-//Value Computed by CMake
-raft_BINARY_DIR:STATIC=/home/river/work/Raft/Raft_LAB3/build/src
-
-//Value Computed by CMake
-raft_IS_TOP_LEVEL:STATIC=OFF
-
-//Value Computed by CMake
-raft_SOURCE_DIR:STATIC=/home/river/work/Raft/Raft_LAB3/src
-
 //Dependencies for the target
 raft_proto_LIB_DEPENDS:STATIC=general;protobuf::libprotobuf;general;gRPC::grpc;general;gRPC::grpc++;
+
+//Value Computed by CMake
+shardkv_BINARY_DIR:STATIC=/home/river/work/Raft/Raft_LAB3/build/src/shardkv
+
+//Value Computed by CMake
+shardkv_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+shardkv_SOURCE_DIR:STATIC=/home/river/work/Raft/Raft_LAB3/src/shardkv
 
 
 ########################
@@ -423,7 +423,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=3
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=4
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

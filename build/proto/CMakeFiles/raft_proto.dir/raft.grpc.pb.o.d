@@ -292,6 +292,7 @@ proto/CMakeFiles/raft_proto.dir/raft.grpc.pb.o: \
  /usr/local/include/google/protobuf/reflection_ops.h \
  /usr/local/include/google/protobuf/map_field_inl.h \
  /usr/local/include/google/protobuf/map_field.h \
+ /home/river/work/Raft/Raft_LAB3/build/proto/shardkv.pb.h \
  /home/river/work/Raft/Raft_LAB3/build/proto/raft.grpc.pb.h \
  /usr/local/include/grpc/impl/codegen/port_platform.h \
  /usr/include/linux/version.h \

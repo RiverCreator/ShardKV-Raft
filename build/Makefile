@@ -130,30 +130,56 @@ raft_proto/fast:
 .PHONY : raft_proto/fast
 
 #=============================================================================
-# Target rules for targets named raft
+# Target rules for targets named shardserver
 
 # Build rule for target.
-raft: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 raft
-.PHONY : raft
+shardserver: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 shardserver
+.PHONY : shardserver
 
 # fast build rule for target.
-raft/fast:
-	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/raft.dir/build.make src/CMakeFiles/raft.dir/build
-.PHONY : raft/fast
+shardserver/fast:
+	$(MAKE) $(MAKESILENT) -f src/shardkv/CMakeFiles/shardserver.dir/build.make src/shardkv/CMakeFiles/shardserver.dir/build
+.PHONY : shardserver/fast
 
 #=============================================================================
-# Target rules for targets named cli
+# Target rules for targets named shardclient
 
 # Build rule for target.
-cli: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 cli
-.PHONY : cli
+shardclient: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 shardclient
+.PHONY : shardclient
 
 # fast build rule for target.
-cli/fast:
-	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/cli.dir/build.make src/CMakeFiles/cli.dir/build
-.PHONY : cli/fast
+shardclient/fast:
+	$(MAKE) $(MAKESILENT) -f src/shardkv/CMakeFiles/shardclient.dir/build.make src/shardkv/CMakeFiles/shardclient.dir/build
+.PHONY : shardclient/fast
+
+#=============================================================================
+# Target rules for targets named master
+
+# Build rule for target.
+master: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 master
+.PHONY : master
+
+# fast build rule for target.
+master/fast:
+	$(MAKE) $(MAKESILENT) -f src/shardkv/CMakeFiles/master.dir/build.make src/shardkv/CMakeFiles/master.dir/build
+.PHONY : master/fast
+
+#=============================================================================
+# Target rules for targets named clerk
+
+# Build rule for target.
+clerk: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 clerk
+.PHONY : clerk
+
+# fast build rule for target.
+clerk/fast:
+	$(MAKE) $(MAKESILENT) -f src/shardkv/CMakeFiles/clerk.dir/build.make src/shardkv/CMakeFiles/clerk.dir/build
+.PHONY : clerk/fast
 
 # Help Target
 help:
@@ -163,9 +189,11 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... cli"
-	@echo "... raft"
+	@echo "... clerk"
+	@echo "... master"
 	@echo "... raft_proto"
+	@echo "... shardclient"
+	@echo "... shardserver"
 .PHONY : help
 
 

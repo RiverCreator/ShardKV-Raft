@@ -34,6 +34,7 @@
 #include <google/protobuf/map_entry.h>
 #include <google/protobuf/map_field_inl.h>
 #include <google/protobuf/unknown_field_set.h>
+#include "shardkv.pb.h"
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_raft_2eproto
@@ -49,7 +50,7 @@ struct TableStruct_raft_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[10]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[18]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -75,6 +76,18 @@ extern RequestVoteDefaultTypeInternal _RequestVote_default_instance_;
 class ResponseVote;
 class ResponseVoteDefaultTypeInternal;
 extern ResponseVoteDefaultTypeInternal _ResponseVote_default_instance_;
+class ShardData;
+class ShardDataDefaultTypeInternal;
+extern ShardDataDefaultTypeInternal _ShardData_default_instance_;
+class ShardData_DataEntry_DoNotUse;
+class ShardData_DataEntry_DoNotUseDefaultTypeInternal;
+extern ShardData_DataEntry_DoNotUseDefaultTypeInternal _ShardData_DataEntry_DoNotUse_default_instance_;
+class ShardsData;
+class ShardsDataDefaultTypeInternal;
+extern ShardsDataDefaultTypeInternal _ShardsData_default_instance_;
+class ShardsData_DataEntry_DoNotUse;
+class ShardsData_DataEntry_DoNotUseDefaultTypeInternal;
+extern ShardsData_DataEntry_DoNotUseDefaultTypeInternal _ShardsData_DataEntry_DoNotUse_default_instance_;
 class SnapShot;
 class SnapShotDefaultTypeInternal;
 extern SnapShotDefaultTypeInternal _SnapShot_default_instance_;
@@ -84,9 +97,21 @@ extern SnapShotInfoDefaultTypeInternal _SnapShotInfo_default_instance_;
 class SnapShotInfo_ClientseqEntry_DoNotUse;
 class SnapShotInfo_ClientseqEntry_DoNotUseDefaultTypeInternal;
 extern SnapShotInfo_ClientseqEntry_DoNotUseDefaultTypeInternal _SnapShotInfo_ClientseqEntry_DoNotUse_default_instance_;
+class SnapShotInfo_ComeinshardsEntry_DoNotUse;
+class SnapShotInfo_ComeinshardsEntry_DoNotUseDefaultTypeInternal;
+extern SnapShotInfo_ComeinshardsEntry_DoNotUseDefaultTypeInternal _SnapShotInfo_ComeinshardsEntry_DoNotUse_default_instance_;
 class SnapShotInfo_DataEntry_DoNotUse;
 class SnapShotInfo_DataEntry_DoNotUseDefaultTypeInternal;
 extern SnapShotInfo_DataEntry_DoNotUseDefaultTypeInternal _SnapShotInfo_DataEntry_DoNotUse_default_instance_;
+class SnapShotInfo_OutshardsEntry_DoNotUse;
+class SnapShotInfo_OutshardsEntry_DoNotUseDefaultTypeInternal;
+extern SnapShotInfo_OutshardsEntry_DoNotUseDefaultTypeInternal _SnapShotInfo_OutshardsEntry_DoNotUse_default_instance_;
+class SnapShotInfo_UnackedEntry_DoNotUse;
+class SnapShotInfo_UnackedEntry_DoNotUseDefaultTypeInternal;
+extern SnapShotInfo_UnackedEntry_DoNotUseDefaultTypeInternal _SnapShotInfo_UnackedEntry_DoNotUse_default_instance_;
+class UnAckShards;
+class UnAckShardsDefaultTypeInternal;
+extern UnAckShardsDefaultTypeInternal _UnAckShards_default_instance_;
 }  // namespace rf
 PROTOBUF_NAMESPACE_OPEN
 template<> ::rf::AppendEntriesRequest* Arena::CreateMaybeMessage<::rf::AppendEntriesRequest>(Arena*);
@@ -95,10 +120,18 @@ template<> ::rf::InstallSnapShotRequest* Arena::CreateMaybeMessage<::rf::Install
 template<> ::rf::InstallSnapShotResponse* Arena::CreateMaybeMessage<::rf::InstallSnapShotResponse>(Arena*);
 template<> ::rf::RequestVote* Arena::CreateMaybeMessage<::rf::RequestVote>(Arena*);
 template<> ::rf::ResponseVote* Arena::CreateMaybeMessage<::rf::ResponseVote>(Arena*);
+template<> ::rf::ShardData* Arena::CreateMaybeMessage<::rf::ShardData>(Arena*);
+template<> ::rf::ShardData_DataEntry_DoNotUse* Arena::CreateMaybeMessage<::rf::ShardData_DataEntry_DoNotUse>(Arena*);
+template<> ::rf::ShardsData* Arena::CreateMaybeMessage<::rf::ShardsData>(Arena*);
+template<> ::rf::ShardsData_DataEntry_DoNotUse* Arena::CreateMaybeMessage<::rf::ShardsData_DataEntry_DoNotUse>(Arena*);
 template<> ::rf::SnapShot* Arena::CreateMaybeMessage<::rf::SnapShot>(Arena*);
 template<> ::rf::SnapShotInfo* Arena::CreateMaybeMessage<::rf::SnapShotInfo>(Arena*);
 template<> ::rf::SnapShotInfo_ClientseqEntry_DoNotUse* Arena::CreateMaybeMessage<::rf::SnapShotInfo_ClientseqEntry_DoNotUse>(Arena*);
+template<> ::rf::SnapShotInfo_ComeinshardsEntry_DoNotUse* Arena::CreateMaybeMessage<::rf::SnapShotInfo_ComeinshardsEntry_DoNotUse>(Arena*);
 template<> ::rf::SnapShotInfo_DataEntry_DoNotUse* Arena::CreateMaybeMessage<::rf::SnapShotInfo_DataEntry_DoNotUse>(Arena*);
+template<> ::rf::SnapShotInfo_OutshardsEntry_DoNotUse* Arena::CreateMaybeMessage<::rf::SnapShotInfo_OutshardsEntry_DoNotUse>(Arena*);
+template<> ::rf::SnapShotInfo_UnackedEntry_DoNotUse* Arena::CreateMaybeMessage<::rf::SnapShotInfo_UnackedEntry_DoNotUse>(Arena*);
+template<> ::rf::UnAckShards* Arena::CreateMaybeMessage<::rf::UnAckShards>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace rf {
 
@@ -1169,6 +1202,514 @@ class SnapShot PROTOBUF_FINAL :
 };
 // -------------------------------------------------------------------
 
+class ShardData_DataEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<ShardData_DataEntry_DoNotUse, 
+    std::string, std::string,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<ShardData_DataEntry_DoNotUse, 
+    std::string, std::string,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> SuperType;
+  ShardData_DataEntry_DoNotUse();
+  explicit ShardData_DataEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const ShardData_DataEntry_DoNotUse& other);
+  static const ShardData_DataEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const ShardData_DataEntry_DoNotUse*>(&_ShardData_DataEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "rf.ShardData.DataEntry.key");
+ }
+  static bool ValidateValue(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "rf.ShardData.DataEntry.value");
+ }
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& other) final;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_raft_2eproto);
+    return ::descriptor_table_raft_2eproto.file_level_metadata[6];
+  }
+
+  public:
+};
+
+// -------------------------------------------------------------------
+
+class ShardData PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:rf.ShardData) */ {
+ public:
+  inline ShardData() : ShardData(nullptr) {}
+  virtual ~ShardData();
+
+  ShardData(const ShardData& from);
+  ShardData(ShardData&& from) noexcept
+    : ShardData() {
+    *this = ::std::move(from);
+  }
+
+  inline ShardData& operator=(const ShardData& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ShardData& operator=(ShardData&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const ShardData& default_instance();
+
+  static inline const ShardData* internal_default_instance() {
+    return reinterpret_cast<const ShardData*>(
+               &_ShardData_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    7;
+
+  friend void swap(ShardData& a, ShardData& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ShardData* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ShardData* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ShardData* New() const final {
+    return CreateMaybeMessage<ShardData>(nullptr);
+  }
+
+  ShardData* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<ShardData>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const ShardData& from);
+  void MergeFrom(const ShardData& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ShardData* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "rf.ShardData";
+  }
+  protected:
+  explicit ShardData(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_raft_2eproto);
+    return ::descriptor_table_raft_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDataFieldNumber = 1,
+  };
+  // map<string, string> data = 1;
+  int data_size() const;
+  private:
+  int _internal_data_size() const;
+  public:
+  void clear_data();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+      _internal_data() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+      _internal_mutable_data();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+      data() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+      mutable_data();
+
+  // @@protoc_insertion_point(class_scope:rf.ShardData)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      ShardData_DataEntry_DoNotUse,
+      std::string, std::string,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> data_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_raft_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ShardsData_DataEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<ShardsData_DataEntry_DoNotUse, 
+    ::PROTOBUF_NAMESPACE_ID::int32, ::rf::ShardData,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<ShardsData_DataEntry_DoNotUse, 
+    ::PROTOBUF_NAMESPACE_ID::int32, ::rf::ShardData,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
+  ShardsData_DataEntry_DoNotUse();
+  explicit ShardsData_DataEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const ShardsData_DataEntry_DoNotUse& other);
+  static const ShardsData_DataEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const ShardsData_DataEntry_DoNotUse*>(&_ShardsData_DataEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(void*) { return true; }
+  static bool ValidateValue(void*) { return true; }
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& other) final;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_raft_2eproto);
+    return ::descriptor_table_raft_2eproto.file_level_metadata[8];
+  }
+
+  public:
+};
+
+// -------------------------------------------------------------------
+
+class ShardsData PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:rf.ShardsData) */ {
+ public:
+  inline ShardsData() : ShardsData(nullptr) {}
+  virtual ~ShardsData();
+
+  ShardsData(const ShardsData& from);
+  ShardsData(ShardsData&& from) noexcept
+    : ShardsData() {
+    *this = ::std::move(from);
+  }
+
+  inline ShardsData& operator=(const ShardsData& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ShardsData& operator=(ShardsData&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const ShardsData& default_instance();
+
+  static inline const ShardsData* internal_default_instance() {
+    return reinterpret_cast<const ShardsData*>(
+               &_ShardsData_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    9;
+
+  friend void swap(ShardsData& a, ShardsData& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ShardsData* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ShardsData* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ShardsData* New() const final {
+    return CreateMaybeMessage<ShardsData>(nullptr);
+  }
+
+  ShardsData* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<ShardsData>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const ShardsData& from);
+  void MergeFrom(const ShardsData& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ShardsData* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "rf.ShardsData";
+  }
+  protected:
+  explicit ShardsData(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_raft_2eproto);
+    return ::descriptor_table_raft_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDataFieldNumber = 1,
+  };
+  // map<int32, .rf.ShardData> data = 1;
+  int data_size() const;
+  private:
+  int _internal_data_size() const;
+  public:
+  void clear_data();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::rf::ShardData >&
+      _internal_data() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::rf::ShardData >*
+      _internal_mutable_data();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::rf::ShardData >&
+      data() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::rf::ShardData >*
+      mutable_data();
+
+  // @@protoc_insertion_point(class_scope:rf.ShardsData)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      ShardsData_DataEntry_DoNotUse,
+      ::PROTOBUF_NAMESPACE_ID::int32, ::rf::ShardData,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> data_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_raft_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UnAckShards PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:rf.UnAckShards) */ {
+ public:
+  inline UnAckShards() : UnAckShards(nullptr) {}
+  virtual ~UnAckShards();
+
+  UnAckShards(const UnAckShards& from);
+  UnAckShards(UnAckShards&& from) noexcept
+    : UnAckShards() {
+    *this = ::std::move(from);
+  }
+
+  inline UnAckShards& operator=(const UnAckShards& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UnAckShards& operator=(UnAckShards&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const UnAckShards& default_instance();
+
+  static inline const UnAckShards* internal_default_instance() {
+    return reinterpret_cast<const UnAckShards*>(
+               &_UnAckShards_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    10;
+
+  friend void swap(UnAckShards& a, UnAckShards& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UnAckShards* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UnAckShards* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline UnAckShards* New() const final {
+    return CreateMaybeMessage<UnAckShards>(nullptr);
+  }
+
+  UnAckShards* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<UnAckShards>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const UnAckShards& from);
+  void MergeFrom(const UnAckShards& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UnAckShards* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "rf.UnAckShards";
+  }
+  protected:
+  explicit UnAckShards(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_raft_2eproto);
+    return ::descriptor_table_raft_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDataFieldNumber = 1,
+  };
+  // repeated int32 data = 1;
+  int data_size() const;
+  private:
+  int _internal_data_size() const;
+  public:
+  void clear_data();
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_data(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >&
+      _internal_data() const;
+  void _internal_add_data(::PROTOBUF_NAMESPACE_ID::int32 value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
+      _internal_mutable_data();
+  public:
+  ::PROTOBUF_NAMESPACE_ID::int32 data(int index) const;
+  void set_data(int index, ::PROTOBUF_NAMESPACE_ID::int32 value);
+  void add_data(::PROTOBUF_NAMESPACE_ID::int32 value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >&
+      data() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
+      mutable_data();
+
+  // @@protoc_insertion_point(class_scope:rf.UnAckShards)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 > data_;
+  mutable std::atomic<int> _data_cached_byte_size_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_raft_2eproto;
+};
+// -------------------------------------------------------------------
+
 class SnapShotInfo_DataEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<SnapShotInfo_DataEntry_DoNotUse, 
     std::string, std::string,
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
@@ -1193,7 +1734,7 @@ public:
   private:
   static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
     ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_raft_2eproto);
-    return ::descriptor_table_raft_2eproto.file_level_metadata[6];
+    return ::descriptor_table_raft_2eproto.file_level_metadata[11];
   }
 
   public:
@@ -1221,7 +1762,91 @@ public:
   private:
   static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
     ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_raft_2eproto);
-    return ::descriptor_table_raft_2eproto.file_level_metadata[7];
+    return ::descriptor_table_raft_2eproto.file_level_metadata[12];
+  }
+
+  public:
+};
+
+// -------------------------------------------------------------------
+
+class SnapShotInfo_ComeinshardsEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<SnapShotInfo_ComeinshardsEntry_DoNotUse, 
+    ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::int32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<SnapShotInfo_ComeinshardsEntry_DoNotUse, 
+    ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::int32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32> SuperType;
+  SnapShotInfo_ComeinshardsEntry_DoNotUse();
+  explicit SnapShotInfo_ComeinshardsEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const SnapShotInfo_ComeinshardsEntry_DoNotUse& other);
+  static const SnapShotInfo_ComeinshardsEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const SnapShotInfo_ComeinshardsEntry_DoNotUse*>(&_SnapShotInfo_ComeinshardsEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(void*) { return true; }
+  static bool ValidateValue(void*) { return true; }
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& other) final;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_raft_2eproto);
+    return ::descriptor_table_raft_2eproto.file_level_metadata[13];
+  }
+
+  public:
+};
+
+// -------------------------------------------------------------------
+
+class SnapShotInfo_OutshardsEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<SnapShotInfo_OutshardsEntry_DoNotUse, 
+    ::PROTOBUF_NAMESPACE_ID::int32, ::rf::ShardsData,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<SnapShotInfo_OutshardsEntry_DoNotUse, 
+    ::PROTOBUF_NAMESPACE_ID::int32, ::rf::ShardsData,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
+  SnapShotInfo_OutshardsEntry_DoNotUse();
+  explicit SnapShotInfo_OutshardsEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const SnapShotInfo_OutshardsEntry_DoNotUse& other);
+  static const SnapShotInfo_OutshardsEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const SnapShotInfo_OutshardsEntry_DoNotUse*>(&_SnapShotInfo_OutshardsEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(void*) { return true; }
+  static bool ValidateValue(void*) { return true; }
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& other) final;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_raft_2eproto);
+    return ::descriptor_table_raft_2eproto.file_level_metadata[14];
+  }
+
+  public:
+};
+
+// -------------------------------------------------------------------
+
+class SnapShotInfo_UnackedEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<SnapShotInfo_UnackedEntry_DoNotUse, 
+    ::PROTOBUF_NAMESPACE_ID::int32, ::rf::UnAckShards,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<SnapShotInfo_UnackedEntry_DoNotUse, 
+    ::PROTOBUF_NAMESPACE_ID::int32, ::rf::UnAckShards,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
+  SnapShotInfo_UnackedEntry_DoNotUse();
+  explicit SnapShotInfo_UnackedEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const SnapShotInfo_UnackedEntry_DoNotUse& other);
+  static const SnapShotInfo_UnackedEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const SnapShotInfo_UnackedEntry_DoNotUse*>(&_SnapShotInfo_UnackedEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(void*) { return true; }
+  static bool ValidateValue(void*) { return true; }
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& other) final;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_raft_2eproto);
+    return ::descriptor_table_raft_2eproto.file_level_metadata[15];
   }
 
   public:
@@ -1270,7 +1895,7 @@ class SnapShotInfo PROTOBUF_FINAL :
                &_SnapShotInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    16;
 
   friend void swap(SnapShotInfo& a, SnapShotInfo& b) {
     a.Swap(&b);
@@ -1344,6 +1969,11 @@ class SnapShotInfo PROTOBUF_FINAL :
   enum : int {
     kDataFieldNumber = 1,
     kClientseqFieldNumber = 2,
+    kComeinshardsFieldNumber = 3,
+    kOutshardsFieldNumber = 4,
+    kAvalishardsFieldNumber = 5,
+    kUnackedFieldNumber = 6,
+    kConfigFieldNumber = 7,
   };
   // map<string, string> data = 1;
   int data_size() const;
@@ -1379,6 +2009,97 @@ class SnapShotInfo PROTOBUF_FINAL :
   ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::int32 >*
       mutable_clientseq();
 
+  // map<int32, int32> comeinshards = 3;
+  int comeinshards_size() const;
+  private:
+  int _internal_comeinshards_size() const;
+  public:
+  void clear_comeinshards();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::int32 >&
+      _internal_comeinshards() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::int32 >*
+      _internal_mutable_comeinshards();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::int32 >&
+      comeinshards() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::int32 >*
+      mutable_comeinshards();
+
+  // map<int32, .rf.ShardsData> outshards = 4;
+  int outshards_size() const;
+  private:
+  int _internal_outshards_size() const;
+  public:
+  void clear_outshards();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::rf::ShardsData >&
+      _internal_outshards() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::rf::ShardsData >*
+      _internal_mutable_outshards();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::rf::ShardsData >&
+      outshards() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::rf::ShardsData >*
+      mutable_outshards();
+
+  // repeated int32 avalishards = 5;
+  int avalishards_size() const;
+  private:
+  int _internal_avalishards_size() const;
+  public:
+  void clear_avalishards();
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_avalishards(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >&
+      _internal_avalishards() const;
+  void _internal_add_avalishards(::PROTOBUF_NAMESPACE_ID::int32 value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
+      _internal_mutable_avalishards();
+  public:
+  ::PROTOBUF_NAMESPACE_ID::int32 avalishards(int index) const;
+  void set_avalishards(int index, ::PROTOBUF_NAMESPACE_ID::int32 value);
+  void add_avalishards(::PROTOBUF_NAMESPACE_ID::int32 value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >&
+      avalishards() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
+      mutable_avalishards();
+
+  // map<int32, .rf.UnAckShards> unacked = 6;
+  int unacked_size() const;
+  private:
+  int _internal_unacked_size() const;
+  public:
+  void clear_unacked();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::rf::UnAckShards >&
+      _internal_unacked() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::rf::UnAckShards >*
+      _internal_mutable_unacked();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::rf::UnAckShards >&
+      unacked() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::rf::UnAckShards >*
+      mutable_unacked();
+
+  // .shardkv.Config config = 7;
+  bool has_config() const;
+  private:
+  bool _internal_has_config() const;
+  public:
+  void clear_config();
+  const ::shardkv::Config& config() const;
+  ::shardkv::Config* release_config();
+  ::shardkv::Config* mutable_config();
+  void set_allocated_config(::shardkv::Config* config);
+  private:
+  const ::shardkv::Config& _internal_config() const;
+  ::shardkv::Config* _internal_mutable_config();
+  public:
+  void unsafe_arena_set_allocated_config(
+      ::shardkv::Config* config);
+  ::shardkv::Config* unsafe_arena_release_config();
+
   // @@protoc_insertion_point(class_scope:rf.SnapShotInfo)
  private:
   class _Internal;
@@ -1396,6 +2117,24 @@ class SnapShotInfo PROTOBUF_FINAL :
       ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::int32,
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32,
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32> clientseq_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      SnapShotInfo_ComeinshardsEntry_DoNotUse,
+      ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::int32,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32> comeinshards_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      SnapShotInfo_OutshardsEntry_DoNotUse,
+      ::PROTOBUF_NAMESPACE_ID::int32, ::rf::ShardsData,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> outshards_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 > avalishards_;
+  mutable std::atomic<int> _avalishards_cached_byte_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      SnapShotInfo_UnackedEntry_DoNotUse,
+      ::PROTOBUF_NAMESPACE_ID::int32, ::rf::UnAckShards,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> unacked_;
+  ::shardkv::Config* config_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_raft_2eproto;
 };
@@ -1442,7 +2181,7 @@ class InstallSnapShotResponse PROTOBUF_FINAL :
                &_InstallSnapShotResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    17;
 
   friend void swap(InstallSnapShotResponse& a, InstallSnapShotResponse& b) {
     a.Swap(&b);
@@ -2226,6 +2965,133 @@ inline void SnapShot::set_allocated_data(std::string* data) {
 
 // -------------------------------------------------------------------
 
+// ShardData
+
+// map<string, string> data = 1;
+inline int ShardData::_internal_data_size() const {
+  return data_.size();
+}
+inline int ShardData::data_size() const {
+  return _internal_data_size();
+}
+inline void ShardData::clear_data() {
+  data_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+ShardData::_internal_data() const {
+  return data_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+ShardData::data() const {
+  // @@protoc_insertion_point(field_map:rf.ShardData.data)
+  return _internal_data();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+ShardData::_internal_mutable_data() {
+  return data_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+ShardData::mutable_data() {
+  // @@protoc_insertion_point(field_mutable_map:rf.ShardData.data)
+  return _internal_mutable_data();
+}
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// ShardsData
+
+// map<int32, .rf.ShardData> data = 1;
+inline int ShardsData::_internal_data_size() const {
+  return data_.size();
+}
+inline int ShardsData::data_size() const {
+  return _internal_data_size();
+}
+inline void ShardsData::clear_data() {
+  data_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::rf::ShardData >&
+ShardsData::_internal_data() const {
+  return data_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::rf::ShardData >&
+ShardsData::data() const {
+  // @@protoc_insertion_point(field_map:rf.ShardsData.data)
+  return _internal_data();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::rf::ShardData >*
+ShardsData::_internal_mutable_data() {
+  return data_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::rf::ShardData >*
+ShardsData::mutable_data() {
+  // @@protoc_insertion_point(field_mutable_map:rf.ShardsData.data)
+  return _internal_mutable_data();
+}
+
+// -------------------------------------------------------------------
+
+// UnAckShards
+
+// repeated int32 data = 1;
+inline int UnAckShards::_internal_data_size() const {
+  return data_.size();
+}
+inline int UnAckShards::data_size() const {
+  return _internal_data_size();
+}
+inline void UnAckShards::clear_data() {
+  data_.Clear();
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 UnAckShards::_internal_data(int index) const {
+  return data_.Get(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 UnAckShards::data(int index) const {
+  // @@protoc_insertion_point(field_get:rf.UnAckShards.data)
+  return _internal_data(index);
+}
+inline void UnAckShards::set_data(int index, ::PROTOBUF_NAMESPACE_ID::int32 value) {
+  data_.Set(index, value);
+  // @@protoc_insertion_point(field_set:rf.UnAckShards.data)
+}
+inline void UnAckShards::_internal_add_data(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  data_.Add(value);
+}
+inline void UnAckShards::add_data(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_add_data(value);
+  // @@protoc_insertion_point(field_add:rf.UnAckShards.data)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >&
+UnAckShards::_internal_data() const {
+  return data_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >&
+UnAckShards::data() const {
+  // @@protoc_insertion_point(field_list:rf.UnAckShards.data)
+  return _internal_data();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
+UnAckShards::_internal_mutable_data() {
+  return &data_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
+UnAckShards::mutable_data() {
+  // @@protoc_insertion_point(field_mutable_list:rf.UnAckShards.data)
+  return _internal_mutable_data();
+}
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // SnapShotInfo
@@ -2288,6 +3154,217 @@ SnapShotInfo::mutable_clientseq() {
   return _internal_mutable_clientseq();
 }
 
+// map<int32, int32> comeinshards = 3;
+inline int SnapShotInfo::_internal_comeinshards_size() const {
+  return comeinshards_.size();
+}
+inline int SnapShotInfo::comeinshards_size() const {
+  return _internal_comeinshards_size();
+}
+inline void SnapShotInfo::clear_comeinshards() {
+  comeinshards_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::int32 >&
+SnapShotInfo::_internal_comeinshards() const {
+  return comeinshards_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::int32 >&
+SnapShotInfo::comeinshards() const {
+  // @@protoc_insertion_point(field_map:rf.SnapShotInfo.comeinshards)
+  return _internal_comeinshards();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::int32 >*
+SnapShotInfo::_internal_mutable_comeinshards() {
+  return comeinshards_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::int32 >*
+SnapShotInfo::mutable_comeinshards() {
+  // @@protoc_insertion_point(field_mutable_map:rf.SnapShotInfo.comeinshards)
+  return _internal_mutable_comeinshards();
+}
+
+// map<int32, .rf.ShardsData> outshards = 4;
+inline int SnapShotInfo::_internal_outshards_size() const {
+  return outshards_.size();
+}
+inline int SnapShotInfo::outshards_size() const {
+  return _internal_outshards_size();
+}
+inline void SnapShotInfo::clear_outshards() {
+  outshards_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::rf::ShardsData >&
+SnapShotInfo::_internal_outshards() const {
+  return outshards_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::rf::ShardsData >&
+SnapShotInfo::outshards() const {
+  // @@protoc_insertion_point(field_map:rf.SnapShotInfo.outshards)
+  return _internal_outshards();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::rf::ShardsData >*
+SnapShotInfo::_internal_mutable_outshards() {
+  return outshards_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::rf::ShardsData >*
+SnapShotInfo::mutable_outshards() {
+  // @@protoc_insertion_point(field_mutable_map:rf.SnapShotInfo.outshards)
+  return _internal_mutable_outshards();
+}
+
+// repeated int32 avalishards = 5;
+inline int SnapShotInfo::_internal_avalishards_size() const {
+  return avalishards_.size();
+}
+inline int SnapShotInfo::avalishards_size() const {
+  return _internal_avalishards_size();
+}
+inline void SnapShotInfo::clear_avalishards() {
+  avalishards_.Clear();
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 SnapShotInfo::_internal_avalishards(int index) const {
+  return avalishards_.Get(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 SnapShotInfo::avalishards(int index) const {
+  // @@protoc_insertion_point(field_get:rf.SnapShotInfo.avalishards)
+  return _internal_avalishards(index);
+}
+inline void SnapShotInfo::set_avalishards(int index, ::PROTOBUF_NAMESPACE_ID::int32 value) {
+  avalishards_.Set(index, value);
+  // @@protoc_insertion_point(field_set:rf.SnapShotInfo.avalishards)
+}
+inline void SnapShotInfo::_internal_add_avalishards(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  avalishards_.Add(value);
+}
+inline void SnapShotInfo::add_avalishards(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_add_avalishards(value);
+  // @@protoc_insertion_point(field_add:rf.SnapShotInfo.avalishards)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >&
+SnapShotInfo::_internal_avalishards() const {
+  return avalishards_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >&
+SnapShotInfo::avalishards() const {
+  // @@protoc_insertion_point(field_list:rf.SnapShotInfo.avalishards)
+  return _internal_avalishards();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
+SnapShotInfo::_internal_mutable_avalishards() {
+  return &avalishards_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
+SnapShotInfo::mutable_avalishards() {
+  // @@protoc_insertion_point(field_mutable_list:rf.SnapShotInfo.avalishards)
+  return _internal_mutable_avalishards();
+}
+
+// map<int32, .rf.UnAckShards> unacked = 6;
+inline int SnapShotInfo::_internal_unacked_size() const {
+  return unacked_.size();
+}
+inline int SnapShotInfo::unacked_size() const {
+  return _internal_unacked_size();
+}
+inline void SnapShotInfo::clear_unacked() {
+  unacked_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::rf::UnAckShards >&
+SnapShotInfo::_internal_unacked() const {
+  return unacked_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::rf::UnAckShards >&
+SnapShotInfo::unacked() const {
+  // @@protoc_insertion_point(field_map:rf.SnapShotInfo.unacked)
+  return _internal_unacked();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::rf::UnAckShards >*
+SnapShotInfo::_internal_mutable_unacked() {
+  return unacked_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int32, ::rf::UnAckShards >*
+SnapShotInfo::mutable_unacked() {
+  // @@protoc_insertion_point(field_mutable_map:rf.SnapShotInfo.unacked)
+  return _internal_mutable_unacked();
+}
+
+// .shardkv.Config config = 7;
+inline bool SnapShotInfo::_internal_has_config() const {
+  return this != internal_default_instance() && config_ != nullptr;
+}
+inline bool SnapShotInfo::has_config() const {
+  return _internal_has_config();
+}
+inline const ::shardkv::Config& SnapShotInfo::_internal_config() const {
+  const ::shardkv::Config* p = config_;
+  return p != nullptr ? *p : reinterpret_cast<const ::shardkv::Config&>(
+      ::shardkv::_Config_default_instance_);
+}
+inline const ::shardkv::Config& SnapShotInfo::config() const {
+  // @@protoc_insertion_point(field_get:rf.SnapShotInfo.config)
+  return _internal_config();
+}
+inline void SnapShotInfo::unsafe_arena_set_allocated_config(
+    ::shardkv::Config* config) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(config_);
+  }
+  config_ = config;
+  if (config) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:rf.SnapShotInfo.config)
+}
+inline ::shardkv::Config* SnapShotInfo::release_config() {
+  
+  ::shardkv::Config* temp = config_;
+  config_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::shardkv::Config* SnapShotInfo::unsafe_arena_release_config() {
+  // @@protoc_insertion_point(field_release:rf.SnapShotInfo.config)
+  
+  ::shardkv::Config* temp = config_;
+  config_ = nullptr;
+  return temp;
+}
+inline ::shardkv::Config* SnapShotInfo::_internal_mutable_config() {
+  
+  if (config_ == nullptr) {
+    auto* p = CreateMaybeMessage<::shardkv::Config>(GetArena());
+    config_ = p;
+  }
+  return config_;
+}
+inline ::shardkv::Config* SnapShotInfo::mutable_config() {
+  // @@protoc_insertion_point(field_mutable:rf.SnapShotInfo.config)
+  return _internal_mutable_config();
+}
+inline void SnapShotInfo::set_allocated_config(::shardkv::Config* config) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(config_);
+  }
+  if (config) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(config)->GetArena();
+    if (message_arena != submessage_arena) {
+      config = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, config, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  config_ = config;
+  // @@protoc_insertion_point(field_set_allocated:rf.SnapShotInfo.config)
+}
+
 // -------------------------------------------------------------------
 
 // InstallSnapShotResponse
@@ -2315,6 +3392,22 @@ inline void InstallSnapShotResponse::set_term(::PROTOBUF_NAMESPACE_ID::int32 val
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

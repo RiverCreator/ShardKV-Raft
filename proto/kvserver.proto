@@ -10,7 +10,9 @@ message PutRequest{
 }
 
 message PutResponse{
-    bool OK = 1;
+    bool isWrongGroup = 1;
+    bool isWrongLeader = 2;
+    bool OK = 3;
 }
 
 message GetRequest{
@@ -20,8 +22,10 @@ message GetRequest{
 }
 
 message GetResponse{
-    string value = 1;
-    bool isExist = 3;
+    bool isWrongGroup = 1;
+    bool isWrongLeader = 2;
+    string value = 3;
+    bool isExist = 4;
 }
 
 message Request{
@@ -35,9 +39,33 @@ message Response{
     bytes response_msg = 3;
 }
 
+message MigrationRequest{
+    int32 shardid = 1;
+    int32 configid = 2;
+}
+
+message MigrationResponse{
+    bytes err = 1;
+    int32 shardid = 2;
+    int32 configid = 3;
+    map<string , bytes> database = 4;
+    map<int32 , int32> clientreq = 5;
+}
+
+message AckRequest{
+    int32 configid = 1;
+    int32 shardid = 2;
+}
+
+message AckResponse{
+    bool received = 1;
+    bytes error = 2;
+}
 //kvshard
 
 service KvRaftServiceRpc{
     rpc Put(PutRequest) returns(PutResponse);
     rpc Get(GetRequest) returns(GetResponse);
+    rpc Migrate(MigrationRequest) returns(MigrationResponse);
+    rpc Ack(AckRequest) returns(AckResponse);
 }

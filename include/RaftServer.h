@@ -24,15 +24,6 @@
 #include "raft.grpc.pb.h"
 #include "common.h"
 #define HEART_BEART_PERIOD 100000
-/**
- * @brief 记录其他节点的ip和port
- * 
- */
-struct PeersInfo{
-    int m_peerId;
-    std::string ip;
-    int port;
-};
 
 /**
  * @brief 记录LogEntry的指令和任期号
